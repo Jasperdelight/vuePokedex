@@ -21,7 +21,12 @@ const routes = [
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
-  }
+  },
+  {
+    path: '/pokemon',
+    name: 'Pokemon',
+    component: loadPage('PokemonPage')
+  },
 ]
 
 export const router = createRouter({

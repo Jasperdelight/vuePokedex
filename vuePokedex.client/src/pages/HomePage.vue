@@ -5,7 +5,8 @@
       <p v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable">{{ p.name }}</p>
     </div>
     <div class="col-6">
-      <img :src="activePokemon.img" alt="">
+      <img :src="activePokemon?.img" alt="">
+      <button @click="catchPokemon(activePokemon)"><i class="mdi mdi-pokeball"></i></button>
     </div>
   </section>
 </div>
@@ -27,7 +28,12 @@ export default {
           logger.log(error);
       }
     }
-    onMounted(()=> getPokemon())
+
+    onMounted(()=> {
+      getPokemon()
+      // getMyPokemon()
+    }
+      )
 
     
     return {
@@ -39,6 +45,13 @@ export default {
         } catch(error) {
             Pop.error(error.message);
             logger.log(error);
+        }
+      },
+      async catchPokemon(poke){
+        try{
+            await pokemonService.catchPokemon(poke)
+        } catch(error) {
+            Pop.error(error.message);
         }
       }
     }
