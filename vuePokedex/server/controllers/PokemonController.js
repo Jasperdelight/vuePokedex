@@ -6,8 +6,8 @@ export class PokemonController extends BaseController{
 constructor(){
   super('api/pokemon')
   this.router
-  .get('', this.getCaughtPokemon)
   .use(Auth0Provider.getAuthorizedUserInfo)
+  .get('', this.getCaughtPokemon)
   .post('', this.catchPokemon)
 }
   async getCaughtPokemon (req, res, next) {

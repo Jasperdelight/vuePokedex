@@ -16,19 +16,21 @@ class PokemonService {
     logger.log('pokemon in appstate', AppState.activePokemon)
   }
   async catchPokemon(poke){
-    
-    const foundPoke = AppState.caughtPokemon.find(p=> p.id == poke.id)
-    if (foundPoke.id == poke.id) {
-      throw new Error('Pokemon already Caught')
-    }
     const res = await api.post('api/pokemon', poke)
     AppState.caughtPokemon.push(new Pokemon(res.data))
+    // const foundPoke = AppState.caughtPokemon.find(p=> p.id == poke.id)
+    // if (foundPoke.id == poke.id) {
+    //   throw new Error('Pokemon already Caught')
+    // }
     logger.log(res.data)
   }
   async getMyPokemon(){
     const res = await api.get('api/pokemon')
     logger.log(res.data)
     AppState.caughtPokemon = res.data.map(p => new Pokemon(p))
+  }
+  setActivePokemon(pokemon){
+    AppState.activePokemon = new Pokemon(pokemon)
   }
 }
 export const pokemonService = new PokemonService
