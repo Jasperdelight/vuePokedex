@@ -1,10 +1,16 @@
 <template>
   <div class="container-fluid">
-    <section class="row"></section>
+    <section class="row">
+      <div class="col-4">
+        <div v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
+          {{ pokemon.name }}
+        </div>
+      </div>
+      <div v-if="activePokemon" class="col-6">
+        <ActivePokemonCard :activePokemon = "activePokemon"/>
+      </div>
+    </section>
   </div>
-<div v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable" >
-{{ pokemon.name }}
-</div>
 </template>
 
 
@@ -14,36 +20,47 @@ import { pokemonService } from "../services/PokemonService";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
+import ActivePokemonCard from "../components/ActivePokemonCard.vue";
 
 export default {
-  setup(){
-    async function getMyPokemon(){
-      try{
-        await pokemonService.getMyPokemon()
-        // debugger;
-      } catch(error) {
-          Pop.error(error.message);
-      }
-    }
-    onMounted(()=> {
-      // getPokemon()
-      getMyPokemon()
-    }
-      )
-    return {
-      caughtPokemon: computed(()=> AppState.caughtPokemon),
-      activePokemon: computed(()=> AppState.activePokemon),
-
-      setActivePokemon(pokemon){
-        try{
-          pokemonService.setActivePokemon(pokemon)
-          
-        } catch(error) {
-            Pop.error(error.message);
+    setup() {
+        async function getMyPokemon() {
+            try {
+                await pokemonService.getMyPokemon();
+                // debugger;
+            }
+            catch (error) {
+                Pop.error(error.message);
+            }
         }
-      }
-    }
-  }
+        onMounted(() => {
+            // getPokemon()
+            getMyPokemon();
+            AppState.activePokemon = null
+        });
+        return {
+            caughtPokemon: computed(() => AppState.caughtPokemon),
+            activePokemon: computed(() => AppState.activePokemon),
+            async getPokemonDetails(name) {
+                try {
+                    await pokemonService.getPokemonDetails(name);
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                    logger.log(error);
+                }
+            },
+            setActivePokemon(pokemon) {
+                try {
+                    pokemonService.setActivePokemon(pokemon);
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            }
+        };
+    },
+    components: { ActivePokemonCard }
 }
 </script>
 
