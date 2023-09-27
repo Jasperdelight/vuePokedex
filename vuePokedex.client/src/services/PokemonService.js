@@ -30,7 +30,8 @@ class PokemonService {
     AppState.caughtPokemon = res.data.map(p => new Pokemon(p))
   }
   setActivePokemon(pokemon){
-    AppState.activePokemon = new Pokemon(pokemon)
+    AppState.activePokemon = pokemon
+    logger.log('poke in appstate', AppState.activePokemon)
   }
 }
 export const pokemonService = new PokemonService
