@@ -21,13 +21,52 @@
       {{ a.ability.name }}
     </button>
   </section>
+  <div>Moves</div>
+  <section v-for="m in activePokemon.moves" :key="m.moves" class="col-6">
+  <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)"> {{ m.move.name }}</button>
+  </section>
   </div>
-  <AbilityModal/>
+  <!-- Ability Modal -->
+  <AbilityModal id="exampleModal">
+    <template #modalHeader>
+      <h5 class="modal-title" id="exampleModalLabel">{{ activeAbility?.name }}</h5>
+    </template>
+    <template #modalBody>
+      <div class="modal-body">
+        <p>{{ activeAbility?.flavorTextEntries[1].flavor_text}}</p>
+        <p>{{activeAbility?.effectEntries[1].effect}}</p>
+      </div>
+    </template>
+  </AbilityModal>
+  <!-- Move Modal -->
+  <AbilityModal id="moveModal">
+    <template #modalHeader>
+      <h5 class="modal-title" id="exampleModalLabel">{{ activeMove?.name }}</h5>
+    </template>
+    <template #modalBody>
+      <div class="modal-body">
+        <div class="container">
+          <section class="row">
+            <p class="col-4"> Power: {{ activeMove?.power }}</p>
+            <p class="col-4"> Accuracy: {{ activeMove?.accuracy }}</p>
+            <p class="col-4"> PP: {{ activeMove?.pp }}</p>
+            <p class="col-4"> Damage Class: {{ activeMove?.damageClass.name }} </p>
+            <p class="col-4"> Type: {{ activeMove?.type.name }} </p>
+            <p class="col-4"> Target: {{ activeMove?.target.name }} </p>
+            <p class="col-12"> {{ activeMove?.flavorText[1].flavor_text }} </p>
+            <p class="col-12"> {{ activeMove?.effectEntries[0].effect }} </p>
+          </section>
+        </div>
+      </div>
+    </template>
+  </AbilityModal>
 
 </template>
 
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState";
 import { Pokemon } from "../models/Pokemon";
 import { abilitiesService } from "../services/AbilitiesService";
 import { logger } from "../utils/Logger";
@@ -40,10 +79,21 @@ export default {
     },
     setup() {
         return {
+          activeAbility: computed(()=> AppState.activeAbility),
+          activeMove: computed(()=> AppState.activeMove),
             async getAbilityDetails(ability) {
                 try {
                     // logger.log(ability)
                     await abilitiesService.getAbilityDetails(ability);
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            },
+            async getMoveDetails(move) {
+                try {
+                    // logger.log(ability)
+                    await abilitiesService.getMoveDetails(move);
                 }
                 catch (error) {
                     Pop.error(error.message);
