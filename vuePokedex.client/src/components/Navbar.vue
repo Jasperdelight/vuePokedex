@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+        <img alt="logo" src="https://images.unsplash.com/photo-1542779283-429940ce8336?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cG9rZW1vbiUyMGJhbGx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" height="45" />
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -13,7 +13,7 @@
       <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'Pokemon' }" v-if="account.id" class="btn text-success lighten-30 selectable text-uppercase">
-            Pokemon
+            My Pokemon
           </router-link>
         </li>
       </ul>

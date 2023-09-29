@@ -12,10 +12,10 @@
           </div>
       <div class="modal-body">
         <p>
-          {{activeAbility?.effectEntries[1].effect}}
+          {{ activeAbility?.flavorTextEntries[1].flavor_text}}
         </p>
         <p>
-          {{ activeAbility?.flavorTextEntries[1].flavor_text}}
+          {{activeAbility?.effectEntries[1].effect}}
         </p>
       </div>
       <div class="modal-footer">
