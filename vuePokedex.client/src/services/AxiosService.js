@@ -10,6 +10,10 @@ export const pokemonApi = Axios.create({
   baseURL: 'https://pokeapi.co/api/v2/',
   timeout: 8004
 })
+export const blankApi = Axios.create({
+  baseURL: "",
+  timeout: 8004
+})
 
 api.interceptors.request.use(config => config, handleAxiosError)
 api.interceptors.response.use(response => response, handleAxiosError)

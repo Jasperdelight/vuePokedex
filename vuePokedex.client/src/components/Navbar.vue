@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'Pokemon' }" class="btn text-success lighten-30 selectable text-uppercase">
+          <router-link :to="{ name: 'Pokemon' }" v-if="account.id" class="btn text-success lighten-30 selectable text-uppercase">
             Pokemon
           </router-link>
         </li>
@@ -24,10 +24,14 @@
 </template>
 
 <script>
+import { computed } from "vue";
+import { AppState } from "../AppState";
 import Login from './Login.vue';
 export default {
   setup() {
-    return {}
+    return {
+      account: computed(()=> AppState.account),
+    }
   },
   components: { Login }
 }

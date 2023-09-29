@@ -1,13 +1,16 @@
 import { AppState } from "../AppState"
 import { Pokemon } from "../models/Pokemon"
 import { logger } from "../utils/Logger"
-import { api, pokemonApi } from "./AxiosService"
+import { api, blankApi, pokemonApi } from "./AxiosService"
 
 class PokemonService {
   async getPokemon(){
     const res = await pokemonApi.get('/pokemon')
-    logger.log(res.data.results)
-    AppState.allPokemon = res.data.results
+    logger.log(res.data)
+    AppState.nextPage = res.data.next
+    AppState.previousPage = res.data.previous
+    AppState.allPokemon = res.data.results.map(p => new Pokemon(p))
+    logger.log('pokes in appstate', AppState.allPokemon)
   }
   async getPokemonDetails(name){
     const res = await pokemonApi.get(`/pokemon/${name}`)
@@ -29,9 +32,26 @@ class PokemonService {
     logger.log(res.data)
     AppState.caughtPokemon = res.data.map(p => new Pokemon(p))
   }
-  setActivePokemon(pokemon){
-    AppState.activePokemon = pokemon
-    logger.log('poke in appstate', AppState.activePokemon)
+  // async setActivePokemon(pokemon){
+  //   const res = await pokemonApi.get(`/pokemon`)
+  //   AppState.activePokemon = pokemon
+  //   logger.log('poke in appstate', AppState.activePokemon)
+  // }
+  async nextPage(){
+    const nextPG = AppState.nextPage
+    const res = await blankApi.get(`${nextPG}`);
+    logger.log(res.data)
+    AppState.nextPage = res.data.next
+    AppState.allPokemon = res.data.results
+    AppState.previousPage = res.data.previous
+  }
+  async previousPage(){
+    const previousPG = AppState.previousPage
+    const res = await blankApi.get(`${previousPG}`);
+    logger.log(res.data)
+    AppState.nextPage = res.data.next
+    AppState.allPokemon = res.data.results
+    AppState.previousPage = res.data.previous
   }
 }
 export const pokemonService = new PokemonService

@@ -6,7 +6,8 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   account: {},
   
-
+  nextPage: null,
+  previousPage: null,
   allPokemon: [],
   /** @type {import('./models/Pokemon.js').Pokemon | null} */
   activePokemon: null,

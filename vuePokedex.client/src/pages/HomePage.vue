@@ -2,6 +2,8 @@
 <div class="container-fluid">
   <section class="row">
     <div class="col-4">
+      <button v-if="previousPG != null" @click="previousPage()"> Prev</button>
+      <button @click="nextPage()">Next</button>
       <p v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable">{{ p.name }}</p>
     </div>
     <div class="col-6">
@@ -42,6 +44,7 @@ export default {
             activePokemon: computed(() => AppState.activePokemon),
             caughtPokemon: computed(() => AppState.caughtPokemon),
             account: computed(() => AppState.account),
+            previousPG: computed(()=> AppState.previousPage),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);
@@ -64,6 +67,20 @@ export default {
                 catch (error) {
                     Pop.error(error.message);
                 }
+            },
+            async nextPage(){
+              try{
+                  await pokemonService.nextPage();
+              } catch(error) {
+                  Pop.error(error.message);
+              }
+            },
+            async previousPage(){
+              try{
+                  await pokemonService.previousPage();
+              } catch(error) {
+                  Pop.error(error.message);
+              }
             }
         };
     },

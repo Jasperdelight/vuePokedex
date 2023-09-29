@@ -50,9 +50,9 @@ export default {
                     logger.log(error);
                 }
             },
-            setActivePokemon(pokemon) {
+            async setActivePokemon(pokemon) {
                 try {
-                    pokemonService.setActivePokemon(pokemon);
+                    await pokemonService.getPokemonDetails(pokemon.name);
                 }
                 catch (error) {
                     Pop.error(error.message);

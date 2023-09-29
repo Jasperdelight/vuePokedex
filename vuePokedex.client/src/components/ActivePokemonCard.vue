@@ -16,8 +16,8 @@
       ID: {{ activePokemon.id }}
     </section>
     <div class="col-12 fs-3">Abilities</div>
-    <!-- <section v-for="a in activePokemon.abilities" :key="a.abilities" class="col-6">
-    {{ a.ability.name }}</section> -->
+    <section v-for="a in activePokemon.abilities" :key="a.abilities" class="col-6">
+    {{ a.ability.name }}</section>
   </div>
 
 </template>
