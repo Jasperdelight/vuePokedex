@@ -22,6 +22,7 @@
     </button>
   </section>
   </div>
+  <AbilityModal/>
 
 </template>
 
@@ -31,23 +32,26 @@ import { Pokemon } from "../models/Pokemon";
 import { abilitiesService } from "../services/AbilitiesService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
+import AbilityModal from "./AbilityModal.vue";
 
 export default {
-  props:{
-    activePokemon: {type: Pokemon, required: true}
-  },
-  setup(){
-    return {
-      async getAbilityDetails(ability){
-        try{
-          // logger.log(ability)
-            await abilitiesService.getAbilityDetails(ability)
-        } catch(error) {
-            Pop.error(error.message);
-        }
-      }
-    }
-  }
+    props: {
+        activePokemon: { type: Pokemon, required: true }
+    },
+    setup() {
+        return {
+            async getAbilityDetails(ability) {
+                try {
+                    // logger.log(ability)
+                    await abilitiesService.getAbilityDetails(ability);
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            }
+        };
+    },
+    components: { AbilityModal }
 }
 </script>
 

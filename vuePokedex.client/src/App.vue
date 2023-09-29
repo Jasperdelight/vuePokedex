@@ -7,8 +7,7 @@
   </main>
    <footer class="bg-dark text-light">
   </footer>
-<!-- Modal -->
-<AbilityModal/>
+
 </template>
 
 <script>
@@ -23,7 +22,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, AbilityModal }
+  components: { Navbar }
 }
 </script>
 <style lang="scss">
