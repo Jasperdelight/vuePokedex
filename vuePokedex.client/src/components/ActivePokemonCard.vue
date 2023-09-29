@@ -17,7 +17,10 @@
     </section>
     <div class="col-12 fs-3">Abilities</div>
     <section v-for="a in activePokemon.abilities" :key="a.abilities" class="col-6">
-    {{ a.ability.name }}</section>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
+      {{ a.ability.name }}
+    </button>
+  </section>
   </div>
 
 </template>
@@ -25,6 +28,9 @@
 
 <script>
 import { Pokemon } from "../models/Pokemon";
+import { abilitiesService } from "../services/AbilitiesService";
+import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
 
 export default {
   props:{
@@ -32,7 +38,14 @@ export default {
   },
   setup(){
     return {
-      
+      async getAbilityDetails(ability){
+        try{
+          // logger.log(ability)
+            await abilitiesService.getAbilityDetails(ability)
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      }
     }
   }
 }
