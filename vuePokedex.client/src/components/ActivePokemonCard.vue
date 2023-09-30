@@ -2,6 +2,7 @@
   <div class="row">
     <section class="col-12">
       {{ activePokemon?.name }}
+
     </section>
     <section class="col-12">
       <img :src="activePokemon?.img" alt="">
@@ -72,12 +73,15 @@ import { abilitiesService } from "../services/AbilitiesService";
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import AbilityModal from "./AbilityModal.vue";
+import { pokemonService } from "../services/PokemonService";
+import { useRoute } from "vue-router";
 
 export default {
     props: {
         activePokemon: { type: Pokemon, required: true }
     },
     setup() {
+      const route = useRoute
         return {
           activeAbility: computed(()=> AppState.activeAbility),
           activeMove: computed(()=> AppState.activeMove),
@@ -98,7 +102,8 @@ export default {
                 catch (error) {
                     Pop.error(error.message);
                 }
-            }
+            },
+
         };
     },
     components: { AbilityModal }

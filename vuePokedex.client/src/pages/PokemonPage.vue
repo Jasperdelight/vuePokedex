@@ -7,6 +7,7 @@
         </div>
       </div>
       <div v-if="activePokemon" class="col-6">
+        <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
         <ActivePokemonCard :activePokemon = "activePokemon"/>
       </div>
     </section>
@@ -15,7 +16,7 @@
 
 
 <script>
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watchEffect } from "vue";
 import { pokemonService } from "../services/PokemonService";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
@@ -35,9 +36,12 @@ export default {
         }
         onMounted(() => {
             // getPokemon()
-            getMyPokemon();
+            // getMyPokemon();
             AppState.activePokemon = null
         });
+        watchEffect(()=> {
+            getMyPokemon();
+        })
         return {
             caughtPokemon: computed(() => AppState.caughtPokemon),
             activePokemon: computed(() => AppState.activePokemon),
@@ -57,6 +61,19 @@ export default {
                 catch (error) {
                     Pop.error(error.message);
                 }
+            },
+            async removePokemon(pokeId){
+              try{
+                const wantsToDelete = await Pop.confirm('Are you sure you want to cancel your ticket to this event?')
+                if (!wantsToDelete) {
+                  return
+                }
+                const foundPoke = AppState.caughtPokemon.find(p => p.id == pokeId)
+                logger.log(foundPoke)
+                await pokemonService.removePokemon(foundPoke)
+              } catch(error) {
+                  Pop.error(error.message);
+              }
             }
         };
     },

@@ -6,9 +6,10 @@ export class PokemonController extends BaseController{
 constructor(){
   super('api/pokemon')
   this.router
-  .use(Auth0Provider.getAuthorizedUserInfo)
   .get('', this.getCaughtPokemon)
+  .use(Auth0Provider.getAuthorizedUserInfo)
   .post('', this.catchPokemon)
+  .delete('/:pokeId', this.removePokemon)
 }
   async getCaughtPokemon (req, res, next) {
   try{
@@ -23,6 +24,16 @@ constructor(){
       req.body.creatorId = req.userInfo.id
       let pokemon = await pokemonService.catchPokemon(req.body)
   return res.send(pokemon)
+  } catch(error) {
+      next(error);
+  }
+  }
+  async removePokemon (req, res, next) {
+  try{
+      const pokemonId = req.params.pokeId
+      const userId = req.userInfo.id
+      let removedPoke = await pokemonService.removePokemon(pokemonId, userId)
+      return res.send(removedPoke)
   } catch(error) {
       next(error);
   }
