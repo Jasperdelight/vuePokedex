@@ -1,12 +1,12 @@
 <template>
 <div class="container-fluid">
   <section class="row">
-    <div class="col-4">
+    <div class="col-2">
       <button v-if="previousPG != null" @click="previousPage()"> Prev</button>
       <button @click="nextPage()">Next</button>
       <p v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable">{{ p.name }}</p>
     </div>
-    <div class="col-6">
+    <div class="col-10">
       <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)"><i class="mdi mdi-pokeball"></i></button>
       <div v-if="activePokemon">
         <ActivePokemonCard :activePokemon = "activePokemon"/>

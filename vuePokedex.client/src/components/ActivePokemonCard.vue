@@ -56,6 +56,7 @@
             <p class="col-4"> Target: {{ activeMove?.target.name }} </p>
             <p class="col-12"> {{ activeMove?.flavorText[1].flavor_text }} </p>
             <p class="col-12"> {{ activeMove?.effectEntries[0].effect }} </p>
+            <p class="col-12"> Effect Chance: {{ activeMove?.effectChance }} %</p>
           </section>
         </div>
       </div>

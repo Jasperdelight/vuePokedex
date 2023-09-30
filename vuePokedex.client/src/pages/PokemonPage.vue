@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-4">
+      <div class="col-2">
         <div v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
           {{ pokemon.name }}
         </div>
       </div>
-      <div v-if="activePokemon" class="col-6">
+      <div v-if="activePokemon" class="col-10">
         <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
         <ActivePokemonCard :activePokemon = "activePokemon"/>
       </div>
