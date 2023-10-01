@@ -5,8 +5,7 @@
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-  </footer>
+
 
 </template>
 
@@ -37,5 +36,11 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+.text-shadow{
+text-shadow: 1px 1px 2px black;
+}
+.text-shadow-light{
+text-shadow: white 1px 0 10px;
 }
 </style>

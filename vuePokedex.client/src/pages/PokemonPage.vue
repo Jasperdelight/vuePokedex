@@ -1,10 +1,13 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-2">
-        <div v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
-          {{ pokemon.name }}
-        </div>
+      <div class="col-2 bg-danger text-white text-shadow">
+        <section class="row">
+          <div class="col-12 my-4"> </div>
+          <p v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
+            {{ pokemon.name }}
+          </p>
+        </section>
       </div>
       <div v-if="activePokemon" class="col-10">
         <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>

@@ -18,13 +18,13 @@
     </section>
     <div class="col-12 fs-3">Abilities</div>
     <section v-for="a in activePokemon.abilities" :key="a.abilities" class="col-6">
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
+    <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
       {{ a.ability.name }}
     </button>
   </section>
   <div>Moves</div>
   <section v-for="m in activePokemon.moves" :key="m.moves" class="col-6">
-  <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)"> {{ m.move.name }}</button>
+  <button class="btn btn-secondary text-black text-shadow-light" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)"> {{ m.move.name }}</button>
   </section>
   </div>
   <!-- Ability Modal -->
