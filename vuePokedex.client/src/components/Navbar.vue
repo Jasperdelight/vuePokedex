@@ -19,10 +19,10 @@
         </li>
 
 
-<form action="" class="d-flex align-items-center">
+<form @submit.prevent="findPokemon()" action="" class="d-flex align-items-center">
   <label for="search"></label>
-  <input type="text" name="search" id="search" class="form-control">
-  <button class="btn btn-secondary">Search</button>
+  <input v-model="editable" type="text" name="search" id="search" class="form-control">
+  <button type="submit" class="btn btn-secondary">Search</button>
 </form>
 
       </ul>
@@ -35,13 +35,27 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { AppState } from "../AppState";
 import Login from './Login.vue';
+import Pop from "../utils/Pop";
+import { logger } from "../utils/Logger";
+import { pokemonService } from "../services/PokemonService";
 export default {
   setup() {
+    const editable = ref('')
     return {
       account: computed(()=> AppState.account),
+      editable,
+      async findPokemon(){
+        try{
+          await pokemonService.getPokemonDetails(editable.value)
+            // logger.log(editable.value)
+            editable.value = ""
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      }
     }
   },
   components: { Login }

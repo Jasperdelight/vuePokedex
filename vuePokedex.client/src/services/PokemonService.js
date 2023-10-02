@@ -39,6 +39,9 @@ class PokemonService {
     AppState.activePokemon = null
     logger.log(AppState.caughtPokemon)
   }
+  async findPokemon(){
+    const res = await pokemonApi.get(`/`)
+  }
   async getMyPokemon(){
     const res = await api.get('api/pokemon')
     logger.log(res.data)
