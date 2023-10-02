@@ -15,11 +15,22 @@
           <router-link :to="{ name: 'Pokemon' }" v-if="account.id" class="btn text-danger selectable text-uppercase">
             My Pokemon
           </router-link>
+          
         </li>
+
+
+<form action="" class="d-flex align-items-center">
+  <label for="search"></label>
+  <input type="text" name="search" id="search" class="form-control">
+  <button class="btn btn-secondary">Search</button>
+</form>
+
       </ul>
+
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>
+
   </nav>
 </template>
 
