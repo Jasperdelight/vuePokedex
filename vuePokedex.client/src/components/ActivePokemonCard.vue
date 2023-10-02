@@ -83,14 +83,12 @@ import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import AbilityModal from "./AbilityModal.vue";
 import { pokemonService } from "../services/PokemonService";
-import { useRoute } from "vue-router";
 
 export default {
     props: {
         activePokemon: { type: Pokemon, required: true }
     },
     setup() {
-      const route = useRoute
         return {
           activeAbility: computed(()=> AppState.activeAbility),
           activeMove: computed(()=> AppState.activeMove),
@@ -107,12 +105,12 @@ export default {
                 try {
                     // logger.log(ability)
                     await abilitiesService.getMoveDetails(move);
+                    
                 }
                 catch (error) {
                     Pop.error(error.message);
                 }
             },
-
         };
     },
     components: { AbilityModal }

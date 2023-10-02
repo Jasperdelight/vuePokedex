@@ -19,7 +19,7 @@
         </li>
 
 
-<form @submit.prevent="findPokemon()" action="" class="d-flex align-items-center">
+<form @submit.prevent="findPokemon()" action="" class="d-flex align-items-center ms-4">
   <label for="search"></label>
   <input v-model="editable" type="text" name="search" id="search" class="form-control">
   <button type="submit" class="btn btn-secondary">Search</button>
