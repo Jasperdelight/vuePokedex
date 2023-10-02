@@ -9,7 +9,9 @@
       </section>
     </div>
     <div class="col-10">
-      <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)" class="btn btn-outline-danger"><i class="mdi mdi-pokeball"></i></button>
+      <div class="col-12 d-flex justify-content-center">
+        <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)" class="btn btn-outline-danger"><i class="mdi mdi-pokeball"></i></button>
+      </div>
       <div v-if="activePokemon">
         <ActivePokemonCard :activePokemon = "activePokemon"/>
       </div>

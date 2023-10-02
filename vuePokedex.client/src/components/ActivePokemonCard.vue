@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <section class="col-12 text-center">
-      <span style="text-transform: capitalize;">
+      <span class="fs-2" style="text-transform: capitalize;">
         {{ activePokemon?.name }}
       </span>
     </section>
@@ -9,15 +9,15 @@
       <img :src="activePokemon?.img" alt="">
     </section>
     <section class="col-4">
-      Weight: {{ activePokemon.weight }}
+      <span class="fw-bold">Weight: </span>{{ activePokemon.weight }}
     </section>
     <section class="col-4">
-      Height: {{ activePokemon.height }}
+      <span class="fw-bold">Height: </span>{{ activePokemon.height }}
     </section>
     <section class="col-4">
-      ID: {{ activePokemon.id }}
+      <span class="fw-bold">ID: </span>{{ activePokemon.id }}
     </section>
-    <div class="col-12 fs-3">Stats</div>
+    <div class="col-12 fs-3">Base Stats</div>
     <section class="col-4" v-for="s in activePokemon.stats" :key="s.stats">
     <span class="fw-bold" style="text-transform: capitalize;">
       {{ s.stat.name }}:
@@ -30,7 +30,7 @@
       {{ a.ability.name }}
     </button>
   </section>
-  <div>Moves</div>
+  <div class="fs-3">Moves</div>
   <section v-for="m in activePokemon.moves" :key="m.moves" class="col-3 mt-2 d-flex justify-content-center">
   <button  class="btn btn-secondary text-black text-shadow-light" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)" style="width: 100%; text-transform: capitalize;"> {{ m.move.name }}</button>
   </section>

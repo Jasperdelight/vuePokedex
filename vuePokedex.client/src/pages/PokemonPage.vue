@@ -10,8 +10,12 @@
         </section>
       </div>
       <div v-if="activePokemon" class="col-10">
-        <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
-        <ActivePokemonCard :activePokemon = "activePokemon"/>
+        <div class="col-12 d-flex justify-content-center">
+          <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
+        </div>
+        <div>
+          <ActivePokemonCard :activePokemon = "activePokemon"/>
+        </div>
       </div>
     </section>
   </div>
@@ -67,12 +71,13 @@ export default {
             },
             async removePokemon(pokeId){
               try{
-                const wantsToDelete = await Pop.confirm('Are you sure you want to cancel your ticket to this event?')
+
+                const foundPoke = AppState.caughtPokemon.find(p => p.id == pokeId)
+                // logger.log(foundPoke)
+                const wantsToDelete = await Pop.confirm(`Are you sure you want to let ${foundPoke.name} free?`)
                 if (!wantsToDelete) {
                   return
                 }
-                const foundPoke = AppState.caughtPokemon.find(p => p.id == pokeId)
-                logger.log(foundPoke)
                 await pokemonService.removePokemon(foundPoke)
               } catch(error) {
                   Pop.error(error.message);
