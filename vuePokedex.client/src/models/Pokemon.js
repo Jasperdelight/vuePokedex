@@ -10,5 +10,6 @@ export class Pokemon{
     this.stats = data.stats
     this.moves = data.moves
     this._id = data._id
+    this.stats = data.stats
   }
 }

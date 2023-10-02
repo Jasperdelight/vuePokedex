@@ -1,10 +1,11 @@
 <template>
   <div class="row">
-    <section class="col-12">
-      {{ activePokemon?.name }}
-
+    <section class="col-12 text-center">
+      <span style="text-transform: capitalize;">
+        {{ activePokemon?.name }}
+      </span>
     </section>
-    <section class="col-12">
+    <section class="col-12 d-flex justify-content-center">
       <img :src="activePokemon?.img" alt="">
     </section>
     <section class="col-4">
@@ -16,15 +17,22 @@
     <section class="col-4">
       ID: {{ activePokemon.id }}
     </section>
+    <div class="col-12 fs-3">Stats</div>
+    <section class="col-4" v-for="s in activePokemon.stats" :key="s.stats">
+    <span class="fw-bold" style="text-transform: capitalize;">
+      {{ s.stat.name }}:
+    </span>
+    {{ s.base_stat }}
+    </section>
     <div class="col-12 fs-3">Abilities</div>
     <section v-for="a in activePokemon.abilities" :key="a.abilities" class="col-3">
-    <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
+    <button style="text-transform: capitalize;" class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
       {{ a.ability.name }}
     </button>
   </section>
   <div>Moves</div>
   <section v-for="m in activePokemon.moves" :key="m.moves" class="col-3 mt-2 d-flex justify-content-center">
-  <button class="btn btn-secondary text-black text-shadow-light" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)" style="width: 100%;"> {{ m.move.name }}</button>
+  <button  class="btn btn-secondary text-black text-shadow-light" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)" style="width: 100%; text-transform: capitalize;"> {{ m.move.name }}</button>
   </section>
   </div>
   <!-- Ability Modal -->

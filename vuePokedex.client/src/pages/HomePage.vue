@@ -5,11 +5,11 @@
       <section class="row">
         <div class="col-6"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
         <div class="col-6"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
-        <p v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable col-12">{{ p.name }}</p>
+        <p style="text-transform: capitalize;" v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable col-12">{{ p.name }}</p>
       </section>
     </div>
     <div class="col-10">
-      <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)"><i class="mdi mdi-pokeball"></i></button>
+      <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)" class="btn btn-outline-danger"><i class="mdi mdi-pokeball"></i></button>
       <div v-if="activePokemon">
         <ActivePokemonCard :activePokemon = "activePokemon"/>
       </div>
