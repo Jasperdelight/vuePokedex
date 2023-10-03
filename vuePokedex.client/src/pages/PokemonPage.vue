@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-2 bg-danger text-white text-shadow">
+      <div class="col-md-2 col-4 bg-danger text-white text-shadow">
         <section class="row">
           <div class="col-12 my-4"> </div>
           <p style="text-transform: capitalize;" v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
@@ -9,7 +9,7 @@
           </p>
         </section>
       </div>
-      <div v-if="activePokemon" class="col-10">
+      <div v-if="activePokemon" class="col-md-10 col-8">
         <div class="col-12 d-flex justify-content-center">
           <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
         </div>

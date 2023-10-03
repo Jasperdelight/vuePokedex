@@ -1,15 +1,15 @@
 <template>
 <div class="container-fluid">
   <section class="row">
-    <div class="col-2 bg-danger text-white text-shadow">
+    <div class="col-md-2 col-4 bg-danger text-white text-shadow">
       <section class="row">
-        <div class="col-5"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
-        <div class="col-2 d-flex align-items-center" title="Page Number">{{ pageCount }}</div>
-        <div class="col-5"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
+        <div class="col-md-5 col-12"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
+        <div class="col-md-2 col-12 d-flex align-items-center" title="Page Number">{{ pageCount }}</div>
+        <div class="col-md-5 col-12"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
         <p style="text-transform: capitalize;" v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable col-12">{{ p.name }}</p>
       </section>
     </div>
-    <div class="col-10">
+    <div class="col-md-10 col-8">
       <div class="col-12 d-flex justify-content-center">
         <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)" class="btn btn-outline-danger"><i class="mdi mdi-pokeball"></i></button>
       </div>
