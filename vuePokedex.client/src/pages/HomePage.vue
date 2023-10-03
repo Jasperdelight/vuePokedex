@@ -3,8 +3,9 @@
   <section class="row">
     <div class="col-2 bg-danger text-white text-shadow">
       <section class="row">
-        <div class="col-6"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
-        <div class="col-6"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
+        <div class="col-5"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
+        <div class="col-2 d-flex align-items-center" title="Page Number">{{ pageCount }}</div>
+        <div class="col-5"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
         <p style="text-transform: capitalize;" v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable col-12">{{ p.name }}</p>
       </section>
     </div>
@@ -44,6 +45,7 @@ export default {
             // getMyPokemon()
         });
         return {
+            pageCount: (0),
             allPokemon: computed(() => AppState.allPokemon),
             activePokemon: computed(() => AppState.activePokemon),
             caughtPokemon: computed(() => AppState.caughtPokemon),
@@ -74,6 +76,7 @@ export default {
             },
             async nextPage(){
               try{
+                this.pageCount++;
                   await pokemonService.nextPage();
               } catch(error) {
                   Pop.error(error.message);
@@ -81,6 +84,7 @@ export default {
             },
             async previousPage(){
               try{
+                this.pageCount--
                   await pokemonService.previousPage();
               } catch(error) {
                   Pop.error(error.message);
