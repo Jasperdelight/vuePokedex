@@ -6,7 +6,7 @@
       </span>
     </section>
     <section class="col-12 d-flex justify-content-center">
-      <img :src="activePokemon?.img" alt="">
+      <img :src="activePokemon?.img" alt="" class="img-fluid">
     </section>
     <section class="col-4">
       <span class="fw-bold">Weight: </span>{{ activePokemon.weight }}
