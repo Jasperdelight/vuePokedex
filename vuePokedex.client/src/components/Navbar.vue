@@ -18,26 +18,18 @@
           
         </li>
 
-
-
-<select v-model="editableTwo" name="cars" id="cars">
+<!-- SEARCH BAR -->
+        <form @submit.prevent="searchFunction()" action="" class="d-flex align-items-center ms-4">
+<select v-model="editableTwo" name="cars" id="cars" class="btn btn-secondary text-shadow">
   <option value="pokemon">Pokemon</option>
   <option value="move">Moves</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
 </select>
 
-<form @submit.prevent="searchFunction()" action="" class="d-flex align-items-center ms-4">
   <label for="search"></label>
   <input v-model="editable" type="text" name="search" id="search" class="form-control">
-  <button type="submit" class="btn btn-secondary">Search</button>
+  <button type="submit" class="btn btn-secondary text-shadow">Search</button>
 </form>
 
-<!-- <form @submit.prevent="findMove()" action="" class="d-flex align-items-center ms-4">
-  <label for="search"></label>
-  <input v-model="editableTwo" type="text" name="search" id="search" class="form-control">
-  <button type="submit" class="btn btn-secondary">Search</button>
-</form> -->
 
       </ul>
 

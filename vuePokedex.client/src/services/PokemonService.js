@@ -16,7 +16,6 @@ class PokemonService {
   }
   async getPokemonDetails(name){
     const res = await pokemonApi.get(`/pokemon/${name}`)
-    // logger.log(res.data)
     AppState.activePokemon = new Pokemon(res.data)
     logger.log('pokemon in appstate', AppState.activePokemon)
     AppState.foundMove = null
@@ -26,15 +25,10 @@ class PokemonService {
     const res = await api.post('api/pokemon', poke)
     AppState.caughtPokemon.push(new Pokemon(res.data))
     Pop.toast(`${res.data.name} has been caught!`)
-    // const foundPoke = AppState.caughtPokemon.find(p=> p.id == poke.id)
-    // if (foundPoke.id == poke.id) {
-    //   throw new Error('Pokemon already Caught')
-    // }
     logger.log(res.data)
   }
   async removePokemon(poke){
     const pokeId = poke._id
-    
     const res = await api.delete(`api/pokemon/${pokeId}`)
     Pop.toast(`${poke.name} has been set free!`)
     const pokemonToRemove = AppState.caughtPokemon.findIndex(p => p.id == pokeId)
