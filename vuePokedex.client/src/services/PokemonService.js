@@ -19,6 +19,7 @@ class PokemonService {
     // logger.log(res.data)
     AppState.activePokemon = new Pokemon(res.data)
     logger.log('pokemon in appstate', AppState.activePokemon)
+    AppState.foundMove = null
   }
 
   async catchPokemon(poke){

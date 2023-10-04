@@ -67,9 +67,9 @@ export default {
       async searchFunction(){
         try{
             if(editableTwo.value == 'pokemon'){
-              await pokemonService.getPokemonDetails(editable.value.toLowerCase())
+              await this.findPokemon()
             } if (editableTwo.value == 'move') {
-              await movesService.getMoveDetails(editable.value.toLowerCase())
+              await this.findMove()
             }
         } catch(error) {
             Pop.error(error.message);
@@ -86,8 +86,8 @@ export default {
       },
       async findMove(){
         try{
-          AppState.activePokemon = null
-          await movesService.getMoveDetails(editableTwo.value.toLowerCase())
+          
+          await movesService.getMoveDetails(editable.value.toLowerCase())
             // logger.log(editable.value)
             editable.value = ""
         } catch(error) {

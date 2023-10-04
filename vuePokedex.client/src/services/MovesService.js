@@ -9,7 +9,7 @@ class MovesService{
     // logger.log(res.data)
     AppState.foundMove = new Move(res.data)
     logger.log(AppState.foundMove)
-
+    AppState.activePokemon = null
   }
 }
 export const movesService = new MovesService()
