@@ -9,6 +9,12 @@
           </p>
         </section>
       </div>
+      
+      <div v-if="activePokemon == null && foundMove == null" class="col-10 d-flex justify-content-center flex-column">
+      <p class="fs-2 text-center">Catch a Pokemon!</p>
+      <img src="https://www.gamespot.com/a/uploads/scale_medium/1601/16018044/3968710-pokedex-run.jpg" alt="pokedex" class="img-fluid ">
+    </div>
+
       <div v-if="activePokemon" class="col-md-10 col-8">
         <div class="col-12 d-flex justify-content-center">
           <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
@@ -52,6 +58,7 @@ export default {
         return {
             caughtPokemon: computed(() => AppState.caughtPokemon),
             activePokemon: computed(() => AppState.activePokemon),
+            foundMove: computed(() => AppState.foundMove),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);

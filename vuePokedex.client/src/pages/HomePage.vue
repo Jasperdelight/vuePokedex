@@ -9,7 +9,12 @@
         <p style="text-transform: capitalize;" v-for="p in allPokemon" :key="p.name" @click="getPokemonDetails(p.name)" class="selectable col-12">{{ p.name }}</p>
       </section>
     </div>
+    <div v-if="activePokemon == null && foundMove == null" class="col-10 d-flex justify-content-center flex-column">
+      <p class="fs-2 text-center">Select a Pokemon!</p>
+      <img src="https://www.gamespot.com/a/uploads/scale_medium/1601/16018044/3968710-pokedex-run.jpg" alt="pokedex" class="img-fluid ">
+    </div>
     <div class="col-md-10 col-8">
+
       <div class="col-12 d-flex justify-content-center">
         <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)" class="btn btn-outline-danger"><i class="mdi mdi-pokeball"></i></button>
       </div>
