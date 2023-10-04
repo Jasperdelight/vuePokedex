@@ -25,6 +25,12 @@
   <button type="submit" class="btn btn-secondary">Search</button>
 </form>
 
+<form @submit.prevent="findMove()" action="" class="d-flex align-items-center ms-4">
+  <label for="search"></label>
+  <input v-model="editableTwo" type="text" name="search" id="search" class="form-control">
+  <button type="submit" class="btn btn-secondary">Search</button>
+</form>
+
       </ul>
 
       <!-- LOGIN COMPONENT HERE -->
@@ -44,12 +50,23 @@ import { pokemonService } from "../services/PokemonService";
 export default {
   setup() {
     const editable = ref('')
+    const editableTwo = ref('')
     return {
       account: computed(()=> AppState.account),
       editable,
+      editableTwo,
       async findPokemon(){
         try{
           await pokemonService.getPokemonDetails(editable.value)
+            // logger.log(editable.value)
+            editable.value = ""
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      },
+      async findMove(){
+        try{
+          await pokemonService.getMoveDetails(editableTwo.value)
             // logger.log(editable.value)
             editable.value = ""
         } catch(error) {

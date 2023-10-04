@@ -19,6 +19,11 @@ class PokemonService {
     AppState.activePokemon = new Pokemon(res.data)
     logger.log('pokemon in appstate', AppState.activePokemon)
   }
+  async getMoveDetails(name){
+    const res = await pokemonApi.get(`/move/${name}`)
+    logger.log(res.data)
+
+  }
   async catchPokemon(poke){
     const res = await api.post('api/pokemon', poke)
     AppState.caughtPokemon.push(new Pokemon(res.data))
