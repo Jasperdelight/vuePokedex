@@ -19,17 +19,25 @@
         </li>
 
 
-<form @submit.prevent="findPokemon()" action="" class="d-flex align-items-center ms-4">
+
+<select v-model="editableTwo" name="cars" id="cars">
+  <option value="pokemon">Pokemon</option>
+  <option value="move">Moves</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+<form @submit.prevent="searchFunction()" action="" class="d-flex align-items-center ms-4">
   <label for="search"></label>
   <input v-model="editable" type="text" name="search" id="search" class="form-control">
   <button type="submit" class="btn btn-secondary">Search</button>
 </form>
 
-<form @submit.prevent="findMove()" action="" class="d-flex align-items-center ms-4">
+<!-- <form @submit.prevent="findMove()" action="" class="d-flex align-items-center ms-4">
   <label for="search"></label>
   <input v-model="editableTwo" type="text" name="search" id="search" class="form-control">
   <button type="submit" class="btn btn-secondary">Search</button>
-</form>
+</form> -->
 
       </ul>
 
@@ -56,6 +64,17 @@ export default {
       account: computed(()=> AppState.account),
       editable,
       editableTwo,
+      async searchFunction(){
+        try{
+            if(editableTwo.value == 'pokemon'){
+              await pokemonService.getPokemonDetails(editable.value.toLowerCase())
+            } if (editableTwo.value == 'move') {
+              await movesService.getMoveDetails(editable.value.toLowerCase())
+            }
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      },
       async findPokemon(){
         try{
           await pokemonService.getPokemonDetails(editable.value.toLowerCase())
