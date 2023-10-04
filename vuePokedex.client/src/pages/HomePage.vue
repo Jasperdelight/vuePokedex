@@ -16,6 +16,9 @@
       <div v-if="activePokemon">
         <ActivePokemonCard :activePokemon = "activePokemon"/>
       </div>
+      <div v-if="foundMove">
+        <FoundMoveCard/>
+      </div>
     </div>
   </section>
 </div>
@@ -28,6 +31,7 @@ import { logger } from "../utils/Logger";
 import {pokemonService} from "../services/PokemonService"
 import { AppState } from "../AppState";
 import ActivePokemonCard from "../components/ActivePokemonCard.vue";
+import FoundMoveCard from "../components/FoundMoveCard.vue";
 export default {
     setup() {
         async function getPokemon() {
@@ -51,6 +55,7 @@ export default {
             caughtPokemon: computed(() => AppState.caughtPokemon),
             account: computed(() => AppState.account),
             previousPG: computed(()=> AppState.previousPage),
+            foundMove: computed(()=> AppState.foundMove),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);
@@ -92,7 +97,7 @@ export default {
             }
         };
     },
-    components: { ActivePokemonCard }
+    components: { ActivePokemonCard, FoundMoveCard }
 }
 </script>
 

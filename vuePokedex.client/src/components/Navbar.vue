@@ -47,6 +47,7 @@ import Login from './Login.vue';
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { pokemonService } from "../services/PokemonService";
+import { movesService } from "../services/MovesService";
 export default {
   setup() {
     const editable = ref('')
@@ -57,7 +58,7 @@ export default {
       editableTwo,
       async findPokemon(){
         try{
-          await pokemonService.getPokemonDetails(editable.value)
+          await pokemonService.getPokemonDetails(editable.value.toLowerCase())
             // logger.log(editable.value)
             editable.value = ""
         } catch(error) {
@@ -66,7 +67,8 @@ export default {
       },
       async findMove(){
         try{
-          await pokemonService.getMoveDetails(editableTwo.value)
+          AppState.activePokemon = null
+          await movesService.getMoveDetails(editableTwo.value.toLowerCase())
             // logger.log(editable.value)
             editable.value = ""
         } catch(error) {
