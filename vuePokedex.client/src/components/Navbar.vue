@@ -23,6 +23,7 @@
 <select v-model="editableTwo" name="cars" id="cars" class="btn btn-secondary text-shadow">
   <option value="pokemon">Pokemon</option>
   <option value="move">Moves</option>
+  <option value="ability">Abilities</option>
 </select>
 
   <label for="search"></label>
@@ -48,6 +49,7 @@ import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { pokemonService } from "../services/PokemonService";
 import { movesService } from "../services/MovesService";
+import { abilitiesService } from "../services/AbilitiesService";
 export default {
   setup() {
     const editable = ref('')
@@ -62,6 +64,8 @@ export default {
               await this.findPokemon()
             } if (editableTwo.value == 'move') {
               await this.findMove()
+            } if(editableTwo.value == 'ability'){
+              await this.findAbility()
             }
         } catch(error) {
             Pop.error(error.message);
@@ -81,6 +85,14 @@ export default {
           
           await movesService.getMoveDetails(editable.value.toLowerCase())
             // logger.log(editable.value)
+            editable.value = ""
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      },
+      async findAbility(){
+        try{
+            await abilitiesService.findAbility(editable.value.toLowerCase())
             editable.value = ""
         } catch(error) {
             Pop.error(error.message);
