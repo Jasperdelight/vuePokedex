@@ -24,6 +24,7 @@
   <option value="pokemon">Pokemon</option>
   <option value="move">Moves</option>
   <option value="ability">Abilities</option>
+  <option value="item">Items</option>
 </select>
 
   <label for="search"></label>
@@ -50,6 +51,7 @@ import { logger } from "../utils/Logger";
 import { pokemonService } from "../services/PokemonService";
 import { movesService } from "../services/MovesService";
 import { abilitiesService } from "../services/AbilitiesService";
+import { itemsService } from "../services/ItemsService";
 export default {
   setup() {
     const editable = ref('')
@@ -66,6 +68,8 @@ export default {
               await this.findMove()
             } if(editableTwo.value == 'ability'){
               await this.findAbility()
+            } if (editableTwo.value == 'item') {
+              await this.findItem()
             }
         } catch(error) {
             Pop.error(error.message);
@@ -93,6 +97,14 @@ export default {
       async findAbility(){
         try{
             await abilitiesService.findAbility(editable.value.toLowerCase())
+            editable.value = ""
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      },
+      async findItem(){
+        try{
+            await itemsService.findItems(editable.value.toLowerCase())
             editable.value = ""
         } catch(error) {
             Pop.error(error.message);
