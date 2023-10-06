@@ -18,5 +18,7 @@ export const AppState = reactive({
   /** @type {import('./models/Move.js').Move | null} */
   activeMove: null,
   /** @type {import('./models/Move.js').Move | null} */
-  foundMove: null
+  foundMove: null,
+  foundAbility: null,
+  foundItem: null
 })
