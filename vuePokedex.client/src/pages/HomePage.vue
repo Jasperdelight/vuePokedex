@@ -18,11 +18,16 @@
       <div class="col-12 d-flex justify-content-center">
         <button v-if="account.id && activePokemon" @click="catchPokemon(activePokemon)" class="btn btn-outline-danger"><i class="mdi mdi-pokeball"></i></button>
       </div>
+      <!-- Pokemon Search Results -->
       <div v-if="activePokemon">
         <ActivePokemonCard :activePokemon = "activePokemon"/>
       </div>
+      <!-- Move Search Results -->
       <div v-if="foundMove">
         <FoundMoveCard/>
+      </div>
+      <div v-if="foundAbility">
+        <FoundAbilityCard/>
       </div>
     </div>
   </section>
@@ -37,6 +42,7 @@ import {pokemonService} from "../services/PokemonService"
 import { AppState } from "../AppState";
 import ActivePokemonCard from "../components/ActivePokemonCard.vue";
 import FoundMoveCard from "../components/FoundMoveCard.vue";
+import FoundAbilityCard from "../components/FoundAbilityCard.vue";
 export default {
     setup() {
         async function getPokemon() {
@@ -59,8 +65,10 @@ export default {
             activePokemon: computed(() => AppState.activePokemon),
             caughtPokemon: computed(() => AppState.caughtPokemon),
             account: computed(() => AppState.account),
-            previousPG: computed(()=> AppState.previousPage),
-            foundMove: computed(()=> AppState.foundMove),
+            previousPG: computed(() => AppState.previousPage),
+            foundMove: computed(() => AppState.foundMove),
+            foundAbility: computed(() => AppState.foundAbility),
+            foundItem: computed(() => AppState.foundItem),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);
@@ -102,7 +110,7 @@ export default {
             }
         };
     },
-    components: { ActivePokemonCard, FoundMoveCard }
+    components: { ActivePokemonCard, FoundMoveCard, FoundAbilityCard }
 }
 </script>
 

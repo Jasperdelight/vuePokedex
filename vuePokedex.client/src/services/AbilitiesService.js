@@ -17,7 +17,7 @@ async getMoveDetails(move){
 }
 async findAbility(name){
   const res = await pokemonApi.get(`/ability/${name}`)
-  logger.log(res.data)
+  AppState.foundAbility = new Ability(res.data)
 }
 }
 export const abilitiesService = new AbilitiesService()
