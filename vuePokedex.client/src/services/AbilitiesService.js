@@ -18,6 +18,9 @@ async getMoveDetails(move){
 async findAbility(name){
   const res = await pokemonApi.get(`/ability/${name}`)
   AppState.foundAbility = new Ability(res.data)
+  AppState.foundMove = null
+  AppState.foundItem = null
+  AppState.activePokemon = null
 }
 }
 export const abilitiesService = new AbilitiesService()
