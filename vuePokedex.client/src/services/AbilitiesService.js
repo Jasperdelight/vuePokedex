@@ -21,6 +21,7 @@ async findAbility(name){
   AppState.foundMove = null
   AppState.foundItem = null
   AppState.activePokemon = null
+  logger.log(res.data)
 }
 }
 export const abilitiesService = new AbilitiesService()
