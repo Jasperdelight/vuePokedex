@@ -29,6 +29,9 @@
       <div v-if="foundAbility">
         <FoundAbilityCard/>
       </div>
+      <div v-if="foundItem">
+        <FoundItemCard/>
+      </div>
     </div>
   </section>
 </div>
@@ -43,6 +46,7 @@ import { AppState } from "../AppState";
 import ActivePokemonCard from "../components/ActivePokemonCard.vue";
 import FoundMoveCard from "../components/FoundMoveCard.vue";
 import FoundAbilityCard from "../components/FoundAbilityCard.vue";
+import FoundItemCard from "../components/FoundItemCard.vue";
 export default {
     setup() {
         async function getPokemon() {
@@ -110,7 +114,7 @@ export default {
             }
         };
     },
-    components: { ActivePokemonCard, FoundMoveCard, FoundAbilityCard }
+    components: { ActivePokemonCard, FoundMoveCard, FoundAbilityCard, FoundItemCard }
 }
 </script>
 
