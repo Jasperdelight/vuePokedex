@@ -8,6 +8,9 @@ class ItemsService{
     const res = await pokemonApi.get(`/item/${name}`)
     logger.log(res.data)
     AppState.foundItem = new Item(res.data)
+    AppState.foundMove = null
+    AppState.foundAbility = null
+    AppState.activePokemon = null
   }
 }
 export const itemsService = new ItemsService()
