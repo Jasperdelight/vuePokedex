@@ -29,7 +29,7 @@
         <select v-model="editable" name="moveSelect" id="moveSelect" class="btn btn-secondary text-shadow">
           <option v-for="a in activePokemon.abilities" :key="a.abilities" :value="a.ability.url">{{a.ability.name}}</option>
         </select>
-        <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#moveModal" type="submit">Get Info</button>
+        <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#abilityModal" type="submit">Get Info</button>
       </form>
   </section>
 
@@ -44,7 +44,7 @@
     </section>
   </div>
   <!-- Ability Modal -->
-  <AbilityModal id="moveModal">
+  <AbilityModal id="abilityModal">
     <template #modalHeader>
       <h5 class="modal-title" id="exampleModalLabel">{{ activeAbility?.name }}</h5>
     </template>
