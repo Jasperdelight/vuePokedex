@@ -20,21 +20,24 @@
     </section>
     <div class="col-12 fs-3">Base Stats</div>
     <section class="col-4" v-for="s in activePokemon.stats" :key="s.stats">
-    <span class="fw-bold" style="text-transform: capitalize;">
-      {{ s.stat.name }}:
-    </span>
-    {{ s.base_stat }}
+      <span class="fw-bold" style="text-transform: capitalize;">{{ s.stat.name }}:</span> {{ s.base_stat }}
     </section>
     <div class="col-12 fs-3">Abilities</div>
-    <section v-for="a in activePokemon.abilities" :key="a.abilities" class="col-md-3 col-6">
-    <button style="text-transform: capitalize;" class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
-      {{ a.ability.name }}
-    </button>
+    <section  class="col-md-3 col-6">
+      <!-- <button style="text-transform: capitalize;" class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="getAbilityDetails(a.ability.url)">
+        {{ a.ability.name }}
+      </button> -->
+      <form @submit.prevent="getAbilityDetails()">
+        <select v-model="editable" name="moveSelect" id="moveSelect" class="btn btn-secondary text-shadow">
+          <option v-for="a in activePokemon.abilities" :key="a.abilities" :value="a.ability.url">{{a.ability.name}}</option>
+        </select>
+        <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Get Info</button>
+      </form>
   </section>
   <div class="fs-3">Moves</div>
-  <section v-for="m in activePokemon.moves" :key="m.moves" class="col-md-3 col-6 mt-2 d-flex justify-content-center">
-  <button  class="btn btn-secondary text-black text-shadow-light" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)" style="width: 100%; text-transform: capitalize;"> {{ m.move.name }}</button>
-  </section>
+    <section v-for="m in activePokemon.moves" :key="m.moves" class="col-md-3 col-6 mt-2 d-flex justify-content-center">
+      <button  class="btn btn-secondary text-black text-shadow-light" data-bs-toggle="modal" data-bs-target="#moveModal" @click="getMoveDetails(m.move.url)" style="width: 100%; text-transform: capitalize;"> {{ m.move.name }}</button>
+    </section>
   </div>
   <!-- Ability Modal -->
   <AbilityModal id="exampleModal">
@@ -76,7 +79,7 @@
 
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { AppState } from "../AppState";
 import { Pokemon } from "../models/Pokemon";
 import { abilitiesService } from "../services/AbilitiesService";
@@ -90,13 +93,15 @@ export default {
         activePokemon: { type: Pokemon, required: true }
     },
     setup() {
+      const editable = ref('')
         return {
           activeAbility: computed(()=> AppState.activeAbility),
           activeMove: computed(()=> AppState.activeMove),
-            async getAbilityDetails(ability) {
+          editable,
+            async getAbilityDetails() {
                 try {
-                    // logger.log(ability)
-                    await abilitiesService.getAbilityDetails(ability);
+                    // logger.log(editable.value)
+                    await abilitiesService.getAbilityDetails(editable.value);
                 }
                 catch (error) {
                     Pop.error(error.message);
