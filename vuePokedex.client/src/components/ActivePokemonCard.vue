@@ -57,15 +57,15 @@
       <div class="modal-body">
         <div class="container">
           <section class="row">
-            <p class="col-4" v-if="activeMove.power"> Power: {{ activeMove?.power }}</p>
-            <p class="col-4" v-if="activeMove.accuracy"> Accuracy: {{ activeMove?.accuracy }}</p>
+            <p class="col-4" v-if="activeMove?.power"> Power: {{ activeMove?.power }}</p>
+            <p class="col-4" v-if="activeMove?.accuracy"> Accuracy: {{ activeMove?.accuracy }}</p>
             <p class="col-4"> PP: {{ activeMove?.pp }}</p>
             <p class="col-4"> Damage Class: {{ activeMove?.damageClass.name }} </p>
             <p class="col-4"> Type: {{ activeMove?.type.name }} </p>
             <p class="col-4"> Target: {{ activeMove?.target.name }} </p>
             <p class="col-12"> {{ activeMove?.flavorText[1].flavor_text }} </p>
             <p class="col-12"> {{ activeMove?.effectEntries[0].effect }} </p>
-            <p v-if="activeMove.effectChance" class="col-12"> Effect Chance: {{ activeMove?.effectChance }} %</p>
+            <p v-if="activeMove?.effectChance" class="col-12"> Effect Chance: {{ activeMove?.effectChance }} %</p>
           </section>
         </div>
       </div>
