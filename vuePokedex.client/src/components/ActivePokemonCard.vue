@@ -23,9 +23,9 @@
       <span class="fw-bold" style="text-transform: capitalize;">{{ s.stat.name }}:</span> {{ s.base_stat }}
     </section>
 
-    <div class="col-12 fs-3">Abilities</div>
-    <section  class="col-md-3 col-6">
-      <form @submit.prevent="getAbilityDetails()">
+    <div class="col-3 fs-3 mt-4">Abilities</div>
+    <section  class="col-3 mt-4">
+      <form @submit.prevent="getAbilityDetails()" class="d-flex">
         <select v-model="editable" name="moveSelect" id="moveSelect" class="btn btn-secondary text-shadow">
           <option v-for="a in activePokemon.abilities" :key="a.abilities" :value="a.ability.url">{{a.ability.name}}</option>
         </select>
@@ -33,9 +33,9 @@
       </form>
   </section>
 
-  <div class="col-12 fs-3">Moves</div>
-    <section  class="col-md-3 col-6">
-      <form @submit.prevent="getMoveDetails()">
+  <div class="col-3 fs-3 mt-4">Moves</div>
+    <section  class="col-3 mt-4">
+      <form @submit.prevent="getMoveDetails()" class="d-flex">
         <select v-model="editableTwo" name="abilitySelect" id="abilitySelect" class="btn btn-secondary text-shadow">
           <option v-for="m in activePokemon.moves" :key="m.moves" :value="m.move.url">{{m.move.name}}</option>
         </select>
