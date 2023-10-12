@@ -116,7 +116,7 @@ export default {
             },
             async getMoveDetails() {
                 try {
-                    logger.log(editableTwo.value)
+                    // logger.log(editableTwo.value)
                     await movesService.setActiveMove(editableTwo.value);
                     
                     
