@@ -2,6 +2,7 @@ import { AppState } from "../AppState"
 import { Ability } from "../models/Ability"
 import { Move } from "../models/Move"
 import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 import { blankApi, pokemonApi } from "./AxiosService"
 
 class AbilitiesService{
@@ -13,6 +14,10 @@ async getAbilityDetails(ability){
 
 async findAbility(name){
   const res = await pokemonApi.get(`/ability/${name}`)
+  if (res.data.name == undefined) {
+    Pop.error('Enter Valid Search Term')
+    return
+  }
   AppState.foundAbility = new Ability(res.data)
   AppState.foundMove = null
   AppState.foundItem = null

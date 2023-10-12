@@ -16,6 +16,10 @@ class PokemonService {
   }
   async getPokemonDetails(name){
     const res = await pokemonApi.get(`/pokemon/${name}`)
+    if (res.data.name == undefined) {
+      Pop.error('Enter Valid Search Term')
+      return
+    }
     AppState.activePokemon = new Pokemon(res.data)
     logger.log('pokemon in appstate', AppState.activePokemon)
     AppState.foundMove = null
