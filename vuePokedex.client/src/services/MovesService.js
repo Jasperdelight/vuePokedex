@@ -8,13 +8,14 @@ class MovesService{
   async getMoveDetails(name){
     const res = await pokemonApi.get(`/move/${name}`)
     // logger.log(res.data)
-    if (res.data.name != undefined) {
-      
-      AppState.foundMove = new Move(res.data)
-      logger.log(AppState.foundMove)
-      AppState.activePokemon = null
+    if (res.data.name == undefined) {
+      Pop.error('Enter Valid Search Term')
+      return
     }
-    Pop.error('Enter Valid Search Term')
+    
+    AppState.foundMove = new Move(res.data)
+    logger.log(AppState.foundMove)
+    AppState.activePokemon = null
   }
   async setActiveMove(move){
     const res = await blankApi.get(`${move}`)
