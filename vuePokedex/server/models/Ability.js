@@ -8,5 +8,12 @@ export const AbilitySchema = new Schema(
     effectEntries: [{Array: String}],
     flavorTextEntries: [{Array: String}],
     generation: [{Array: String}],
-    pokemon: [{Array: String}]
+    pokemon: [{Array: String}],
+    pokemonId: { type: Schema.Types.ObjectId, ref: 'Pokemon', required: true}
   }, { timestamps: true, toJSON: { virtuals: true } })
+  AbilitySchema.virtual('pokemon', {
+    localField: 'pokemonId',
+    foreignField: 'id',
+    justOne: true,
+    ref: 'Pokemon'
+  })
