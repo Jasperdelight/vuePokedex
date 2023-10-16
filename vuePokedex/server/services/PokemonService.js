@@ -20,6 +20,7 @@ class PokemonService{
   }
   async catchPokemon(body) {
     let pokemon = await dbContext.Pokemon.create(body)
+    await pokemon.populate('creator')
     return pokemon;
   }
 

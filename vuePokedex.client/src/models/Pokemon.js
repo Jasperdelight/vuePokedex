@@ -11,5 +11,6 @@ export class Pokemon{
     this.moves = data.moves
     this._id = data._id
     this.stats = data.stats
+    this.creator = data.creator
   }
 }
