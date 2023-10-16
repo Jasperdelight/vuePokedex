@@ -43,10 +43,14 @@ export default {
       async saveAbility(){
         try{
           // logger.log(this.activeAbility)
-          let ability = this.activeAbility
-          ability.pokemonId = this.activePokemon.id
+          const pokemonId = this.activePokemon.id
+          let abilityData = {}
+          abilityData = this.activeAbility
+          abilityData.pokemonId = pokemonId
+          // let ability = this.activeAbility
+          // ability.pokemonId = this.activePokemon.id
           // logger.log(ability)
-            abilitiesService.saveAbility(ability)
+            abilitiesService.saveAbility(abilityData)
         } catch(error) {
             Pop.error(error.message);
         }
