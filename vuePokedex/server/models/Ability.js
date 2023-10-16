@@ -11,7 +11,7 @@ export const AbilitySchema = new Schema(
     pokemon: [{Array: String}],
     pokemonId: { type: Schema.Types.ObjectId, ref: 'Pokemon', required: true}
   }, { timestamps: true, toJSON: { virtuals: true } })
-  AbilitySchema.virtual('pokemon', {
+  AbilitySchema.virtual('Pokemon', {
     localField: 'pokemonId',
     foreignField: 'id',
     justOne: true,
