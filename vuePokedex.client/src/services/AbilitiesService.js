@@ -3,7 +3,7 @@ import { Ability } from "../models/Ability"
 import { Move } from "../models/Move"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
-import { blankApi, pokemonApi } from "./AxiosService"
+import { api, blankApi, pokemonApi } from "./AxiosService"
 
 class AbilitiesService{
 async getAbilityDetails(ability){
@@ -22,6 +22,10 @@ async findAbility(name){
   AppState.foundMove = null
   AppState.foundItem = null
   AppState.activePokemon = null
+  logger.log(res.data)
+}
+async saveAbility(ability){
+  const res = await api.post('api/abilities', ability)
   logger.log(res.data)
 }
 }

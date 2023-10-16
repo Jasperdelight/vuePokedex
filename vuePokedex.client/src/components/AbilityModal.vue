@@ -18,7 +18,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button @click="saveAbility()" type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -30,12 +30,27 @@
 <script>
 import { computed } from "vue";
 import { AppState } from "../AppState";
+import Pop from "../utils/Pop";
+import { abilitiesService } from "../services/AbilitiesService";
+import { logger } from "../utils/Logger";
 
 export default {
   setup(){
     return {
       activeAbility: computed(()=> AppState.activeAbility),
-      activeMove: computed(()=> AppState.activeMove)
+      activeMove: computed(()=> AppState.activeMove),
+      activePokemon: computed(() => AppState.activePokemon),
+      async saveAbility(){
+        try{
+          // logger.log(this.activeAbility)
+          let ability = this.activeAbility
+          ability.pokemonId = this.activePokemon.id
+          // logger.log(ability)
+            abilitiesService.saveAbility(ability)
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      }
     }
   }
 }
