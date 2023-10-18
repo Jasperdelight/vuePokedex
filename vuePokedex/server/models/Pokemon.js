@@ -8,8 +8,8 @@ export const PokemonSchema = new Schema(
     height:{type:Number, required: true},
     weight: {type: Number, required: true},
     name:{type: String, required: true},
-    stats:[{Array: Object,}],
-    moves: [{Array: Object}],
+    stats:[Object],
+    moves: [Object],
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true }
   }, { timestamps: true, toJSON: { virtuals: true } })
   PokemonSchema.virtual('creator', {

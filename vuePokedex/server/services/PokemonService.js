@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from "../utils/Errors"
 
 class PokemonService{
   async getCaughtPokemonById(pokemonId) {
-      const pokemon = await dbContext.Pokemon.findById( pokemonId ).populate('creator')
+      const pokemon = await dbContext.Pokemon.findById( pokemonId ).populate(['creator', 'stats', 'moves'])
       return pokemon;
   }
   async removePokemon(pokeId, userId) {
