@@ -33,9 +33,10 @@ class PokemonService {
   }
   async removePokemon(poke){
     const pokeId = poke._id
+    // logger.log(pokeId)
     const res = await api.delete(`api/pokemon/${pokeId}`)
     Pop.toast(`${poke.name} has been set free!`)
-    const pokemonToRemove = AppState.caughtPokemon.findIndex(p => p.id == pokeId)
+    const pokemonToRemove = AppState.caughtPokemon.findIndex(p => p._id == pokeId)
     AppState.caughtPokemon.splice(pokemonToRemove, 1)
     AppState.activePokemon = null
     logger.log(AppState.caughtPokemon)

@@ -2,7 +2,7 @@ import { Schema } from "mongoose";
 
 export const PokemonSchema = new Schema(
   {
-    abilities: [{Array: String}],
+    abilities: [Object],
     id: {type: Number, required: true},
     img: {type: String, required: true},
     height:{type:Number, required: true},
