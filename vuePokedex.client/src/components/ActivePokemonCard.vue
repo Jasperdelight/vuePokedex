@@ -20,14 +20,14 @@
     </section>
     <div class="col-12 fs-3">Base Stats</div>
     <section class="col-4" v-for="s in activePokemon.stats" :key="s.stats">
-      <span class="fw-bold" style="text-transform: capitalize;">{{ s.stat.name }}:</span> {{ s.base_stat }}
+      <span class="fw-bold" style="text-transform: capitalize;">{{ s?.stat?.name }}:</span> {{ s?.base_stat }}
     </section>
 
     <div class="col-3 fs-3 mt-4">Abilities</div>
     <section  class="col-3 mt-4">
       <form @submit.prevent="getAbilityDetails()" class="d-flex">
         <select v-model="editable" name="moveSelect" id="moveSelect" class="btn btn-secondary text-shadow">
-          <option v-for="a in activePokemon.abilities" :key="a.abilities" :value="a.ability.url">{{a.ability.name}}</option>
+          <option v-for="a in activePokemon.abilities" :key="a.abilities" :value="a?.ability?.url">{{a?.ability?.name}}</option>
         </select>
         <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#abilityModal" type="submit">Get Info</button>
       </form>
@@ -37,7 +37,7 @@
     <section  class="col-3 mt-4">
       <form @submit.prevent="getMoveDetails()" class="d-flex">
         <select v-model="editableTwo" name="abilitySelect" id="abilitySelect" class="btn btn-secondary text-shadow">
-          <option v-for="m in activePokemon.moves" :key="m.moves" :value="m.move.url">{{m.move.name}}</option>
+          <option v-for="m in activePokemon.moves" :key="m.moves" :value="m.move?.url">{{m.move?.name}}</option>
         </select>
         <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#moveModal" type="submit">Get Info</button>
       </form>

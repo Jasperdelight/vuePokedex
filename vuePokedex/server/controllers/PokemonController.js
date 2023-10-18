@@ -7,6 +7,7 @@ constructor(){
   super('api/pokemon')
   this.router
   .get('', this.getCaughtPokemon)
+  .get('/:pokeId', this.getCaughtPokemonById)
   .use(Auth0Provider.getAuthorizedUserInfo)
   .post('', this.catchPokemon)
   .delete('/:pokeId', this.removePokemon)
@@ -21,7 +22,8 @@ constructor(){
   }
   async getCaughtPokemonById (req, res, next) {
   try{
-      const pokemonId = req.body.pokemonId
+    
+      const pokemonId = req.params.pokeId
       const pokemon = await pokemonService.getCaughtPokemonById(pokemonId)
   return res.send(pokemon)
   } catch(error) {

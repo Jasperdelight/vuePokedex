@@ -70,7 +70,8 @@ export default {
             },
             async setActivePokemon(pokemon) {
                 try {
-                    await pokemonService.getPokemonDetails(pokemon.name);
+                  // logger.log(pokemon._id)
+                    await pokemonService.getMyPokemonDetails(pokemon._id);
                 }
                 catch (error) {
                     Pop.error(error.message);
