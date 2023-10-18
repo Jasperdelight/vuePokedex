@@ -2,6 +2,10 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 
 class PokemonService{
+  async getCaughtPokemonById(pokemonId) {
+      const pokemon = await dbContext.Pokemon.find({ pokemonId }).populate('creator')
+      return pokemon;
+  }
   async removePokemon(pokeId, userId) {
     const removedPoke = await dbContext.Pokemon.findById(pokeId)
     if (!removedPoke) {

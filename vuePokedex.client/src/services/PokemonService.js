@@ -45,6 +45,9 @@ class PokemonService {
     logger.log(res.data)
     AppState.caughtPokemon = res.data.map(p => new Pokemon(p))
   }
+  async getMyPokemonDetails(){
+    const res = await api.get(`api/pokemon/`)
+  }
   async nextPage(){
     const nextPG = AppState.nextPage
     const res = await blankApi.get(`${nextPG}`);

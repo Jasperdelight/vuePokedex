@@ -19,6 +19,15 @@ constructor(){
       next(error);
   }
   }
+  async getCaughtPokemonById (req, res, next) {
+  try{
+      const pokemonId = req.body.pokemonId
+      const pokemon = await pokemonService.getCaughtPokemonById(pokemonId)
+  return res.send(pokemon)
+  } catch(error) {
+      next(error);
+  }
+  }
   async catchPokemon (req, res, next) {
   try{
       req.body.creatorId = req.userInfo.id
