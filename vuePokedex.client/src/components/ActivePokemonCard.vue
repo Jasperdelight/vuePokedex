@@ -41,6 +41,7 @@
         </select>
         <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#moveModal" type="submit">Get Info</button>
       </form>
+      <button @click="getMyAbilities()">test</button>
     </section>
   </div>
   <!-- Ability Modal -->
@@ -73,6 +74,7 @@
             <p class="col-12"> {{ activeMove?.flavorText[1].flavor_text }} </p>
             <p class="col-12"> {{ activeMove?.effectEntries[0].effect }} </p>
             <p v-if="activeMove?.effectChance" class="col-12"> Effect Chance: {{ activeMove?.effectChance }} %</p>
+            
           </section>
         </div>
       </div>
@@ -125,6 +127,10 @@ export default {
                     Pop.error(error.message);
                 }
             },
+            async getMyAbilities(){
+              // logger.log('button pressed')
+              await abilitiesService.getMyAbilities()
+            }
         };
     },
     components: { AbilityModal }

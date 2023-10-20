@@ -11,6 +11,10 @@ async getAbilityDetails(ability){
   AppState.activeAbility = new Ability(res.data)
   logger.log(AppState.activeAbility)
 }
+async getMyAbilities(){
+  const res = await api.get('api/abilities')
+  logger.log(res.data)
+}
 
 async findAbility(name){
   const res = await pokemonApi.get(`/ability/${name}`)

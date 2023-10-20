@@ -6,11 +6,20 @@ export class AbilitiesController extends BaseController {
     super('api/abilities')
     this.router
     .post('', this.saveAbility)
+    .get('', this.getMyAbilities)
   }
   async saveAbility (req, res, next) {
   try{
       const ability = await abilitiesService.saveAbility(req.body)
   return res.send(ability)
+  } catch(error) {
+      next(error);
+  }
+  }
+  async getMyAbilities (req, res, next) {
+  try{
+      const abilities = await abilitiesService.getMyAbilities()
+  return res.send(abilities)
   } catch(error) {
       next(error);
   }

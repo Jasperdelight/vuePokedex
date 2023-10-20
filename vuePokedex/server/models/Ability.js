@@ -4,11 +4,11 @@ export const AbilitySchema = new Schema(
   {
     id: {type: Number, required: true},
     name: {type: String, required: true},
-    effectChanges: [{Array: String}],
-    effectEntries: [{Array: String}],
-    flavorTextEntries: [{Array: String}],
-    generation: [{Array: String}],
-    pokemon: [{Array: String}],
+    effectChanges: [Object],
+    effectEntries: [Object],
+    flavorTextEntries: [Object],
+    generation: [Object],
+    pokemon: [Object],
     pokemonId: { type: Number, ref: 'Pokemon', required: true}
   }, { timestamps: true, toJSON: { virtuals: true } })
   AbilitySchema.virtual('mainPokemon', {
