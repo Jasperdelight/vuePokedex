@@ -14,6 +14,7 @@ async getAbilityDetails(ability){
 async getMyAbilities(){
   const res = await api.get('api/abilities')
   logger.log(res.data)
+  AppState.myAbilities = res.data.map(a => new Ability(a))
 }
 
 async findAbility(name){

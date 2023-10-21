@@ -27,6 +27,7 @@
     <section  class="col-3 mt-4">
       <form @submit.prevent="getAbilityDetails()" class="d-flex">
         <select v-model="editable" name="moveSelect" id="moveSelect" class="btn btn-secondary text-shadow">
+
           <option v-for="a in activePokemon.abilities" :key="a.abilities" :value="a?.ability?.url">{{a?.ability?.name}}</option>
         </select>
         <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#abilityModal" type="submit">Get Info</button>
@@ -36,7 +37,8 @@
   <div class="col-3 fs-3 mt-4">Moves</div>
     <section  class="col-3 mt-4">
       <form @submit.prevent="getMoveDetails()" class="d-flex">
-        <select v-model="editableTwo" name="abilitySelect" id="abilitySelect" class="btn btn-secondary text-shadow">
+        <select v-model="editableTwo" name="abilitySelect" id="abilitySelect"  class="btn btn-secondary text-shadow">
+
           <option v-for="m in activePokemon.moves" :key="m.moves" :value="m.move?.url">{{m.move?.name}}</option>
         </select>
         <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#moveModal" type="submit">Get Info</button>
@@ -105,6 +107,7 @@ export default {
       return {
           activeAbility: computed(()=> AppState.activeAbility),
           activeMove: computed(()=> AppState.activeMove),
+          myAbilities: computed(() => AppState.myAbilities),
           editable,
           editableTwo,
             async getAbilityDetails() {
