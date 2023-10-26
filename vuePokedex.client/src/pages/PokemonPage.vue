@@ -11,7 +11,7 @@
       </div>
       
       <div v-if="activePokemon == null && foundMove == null" class="col-10 d-flex justify-content-center flex-column">
-      <p class="fs-2 text-center">Catch a Pokemon!</p>
+      <p class="fs-2 text-center">View Caught Pokemon!</p>
       <img src="https://www.gamespot.com/a/uploads/scale_medium/1601/16018044/3968710-pokedex-run.jpg" alt="pokedex" class="img-fluid ">
     </div>
 
