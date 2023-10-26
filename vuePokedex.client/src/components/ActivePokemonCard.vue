@@ -43,7 +43,7 @@
         </select>
         <button class="btn btn-danger text-white text-shadow" data-bs-toggle="modal" data-bs-target="#moveModal" type="submit">Get Info</button>
       </form>
-      <button @click="getMyAbilities()">test</button>
+
     </section>
   </div>
   <!-- Ability Modal -->
