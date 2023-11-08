@@ -14,6 +14,7 @@ class PokemonService {
     AppState.allPokemon = res.data.results.map(p => new Pokemon(p))
     logger.log('pokes in appstate', AppState.allPokemon)
   }
+  // Poke API currently giving back bad img URL change to remove extra URL if not fixed
   async getPokemonDetails(name){
     const res = await pokemonApi.get(`/pokemon/${name}`)
     if (res.data.name == undefined) {
