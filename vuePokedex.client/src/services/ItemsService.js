@@ -17,5 +17,12 @@ class ItemsService{
     AppState.foundAbility = null
     AppState.activePokemon = null
   }
+  async getItems(){
+    const res = await pokemonApi.get(`/item`)
+    logger.log(res.data)
+    AppState.nextPage = res.data.next
+    AppState.previousPage = res.data.previous
+    AppState.allItems = res.data.results.map(i => new Item(i))
+  }
 }
 export const itemsService = new ItemsService()

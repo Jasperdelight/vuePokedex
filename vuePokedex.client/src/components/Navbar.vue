@@ -12,6 +12,9 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
+          <router-link :to="{ name: 'Item' }" v-if="account.id" class="btn text-danger selectable text-uppercase">
+            Items
+          </router-link>
           <router-link :to="{ name: 'Pokemon' }" v-if="account.id" class="btn text-danger selectable text-uppercase">
             My Pokemon
           </router-link>

@@ -27,6 +27,11 @@ const routes = [
     name: 'Pokemon',
     component: loadPage('PokemonPage')
   },
+  {
+    path: '/item',
+    name: 'Item',
+    component: loadPage('ItemPage')
+  },
 ]
 
 export const router = createRouter({
