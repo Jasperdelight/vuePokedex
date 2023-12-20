@@ -19,10 +19,11 @@ class ItemsService{
   }
   async getItems(){
     const res = await pokemonApi.get(`/item`)
-    logger.log(res.data)
+    // logger.log(res.data)
     AppState.nextPage = res.data.next
     AppState.previousPage = res.data.previous
     AppState.allItems = res.data.results.map(i => new Item(i))
+    logger.log('items in appstate', AppState.allItems)
   }
 }
 export const itemsService = new ItemsService()
