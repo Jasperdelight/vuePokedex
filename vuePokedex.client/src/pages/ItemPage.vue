@@ -40,7 +40,11 @@ export default {
       pageCount: (0),
 
       async setActiveItem(item){
-        logger.log(item.name)
+        try{
+            await itemsService.findItems(item.name)
+        } catch(error) {
+            Pop.error(error.message);
+        }
       },
       async nextPage(){
         try{
