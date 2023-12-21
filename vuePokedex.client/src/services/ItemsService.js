@@ -2,7 +2,7 @@ import { AppState } from "../AppState"
 import { Item } from "../models/Item"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
-import { pokemonApi } from "./AxiosService"
+import { blankApi, pokemonApi } from "./AxiosService"
 
 class ItemsService{
   async findItems(name){
@@ -24,6 +24,14 @@ class ItemsService{
     AppState.previousPage = res.data.previous
     AppState.allItems = res.data.results.map(i => new Item(i))
     logger.log('items in appstate', AppState.allItems)
+  }
+  async nextPage(){
+    const nextPG = AppState.nextPage
+    const res = await blankApi.get(`${nextPG}`)
+    logger.log(res.data)
+    AppState.nextPage = res.data.next
+    AppState.allItems = res.data.results
+    AppState.previousPage = res.data.previous
   }
 }
 export const itemsService = new ItemsService()
