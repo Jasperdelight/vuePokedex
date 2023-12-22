@@ -33,5 +33,13 @@ class ItemsService{
     AppState.allItems = res.data.results
     AppState.previousPage = res.data.previous
   }
+  async previousPage(){
+    const previousPG = AppState.previousPage
+    const res = await blankApi.get(`${previousPG}`)
+    logger.log(res.data)
+    AppState.nextPage = res.data.next
+    AppState.allItems = res.data.results
+    AppState.previousPage = res.data.previous
+  }
 }
 export const itemsService = new ItemsService()

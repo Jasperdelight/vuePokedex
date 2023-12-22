@@ -11,6 +11,13 @@
           </p>
         </section>
       </div>
+      <section class="col-10">
+        <div class="col-12 text-center">
+          <div> {{ foundItem?.name }}</div>
+          <!-- Use item card -->
+          
+        </div>
+      </section>
       </section>
       </div>
 </template>
@@ -37,7 +44,9 @@ export default {
     })
     return {
       allItems: computed(() => AppState.allItems),
+      foundItem: computed(() => AppState.foundItem),
       pageCount: (0),
+      previousPG: computed(() => AppState.previousPage),
 
       async setActiveItem(item){
         try{
@@ -50,6 +59,14 @@ export default {
         try{
             this.pageCount++;
             await itemsService.nextPage();
+        } catch(error) {
+            Pop.error(error.message);
+        }
+      },
+      async previousPage(){
+        try{
+            this.pageCount--;
+            await itemsService.previousPage();
         } catch(error) {
             Pop.error(error.message);
         }
