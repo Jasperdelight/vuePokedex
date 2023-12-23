@@ -32,6 +32,11 @@ const routes = [
     name: 'Item',
     component: loadPage('ItemPage')
   },
+  {
+    path: '/ability',
+    name: 'Ability',
+    component: loadPage('AbilityPage')
+  },
 ]
 
 export const router = createRouter({
@@ -40,3 +45,4 @@ export const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
