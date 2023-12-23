@@ -13,9 +13,9 @@
       </div>
       <section class="col-10">
         <div class="col-12 text-center">
-          <div> {{ foundItem?.name }}</div>
-          <!-- Use item card -->
-          
+          <div v-if="foundItem">
+            <FoundItemCard/>
+          </div>
         </div>
       </section>
       </section>
@@ -29,50 +29,55 @@ import { itemsService } from "../services/ItemsService";
 import Pop from "../utils/Pop";
 import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
+import FoundItemCard from "../components/FoundItemCard.vue";
 
 export default {
-  setup(){
-    async function getItems(){
-      try{
-          await itemsService.getItems()
-      } catch(error) {
-          Pop.error(error.message);
-      }
-    }
-    watchEffect(()=> {
-      getItems()
-    })
-    return {
-      allItems: computed(() => AppState.allItems),
-      foundItem: computed(() => AppState.foundItem),
-      pageCount: (0),
-      previousPG: computed(() => AppState.previousPage),
-
-      async setActiveItem(item){
-        try{
-            await itemsService.findItems(item.name)
-        } catch(error) {
-            Pop.error(error.message);
+    setup() {
+        async function getItems() {
+            try {
+                await itemsService.getItems();
+            }
+            catch (error) {
+                Pop.error(error.message);
+            }
         }
-      },
-      async nextPage(){
-        try{
-            this.pageCount++;
-            await itemsService.nextPage();
-        } catch(error) {
-            Pop.error(error.message);
-        }
-      },
-      async previousPage(){
-        try{
-            this.pageCount--;
-            await itemsService.previousPage();
-        } catch(error) {
-            Pop.error(error.message);
-        }
-      }
-    }
-  }
+        watchEffect(() => {
+            getItems();
+        });
+        return {
+            allItems: computed(() => AppState.allItems),
+            foundItem: computed(() => AppState.foundItem),
+            pageCount: (0),
+            previousPG: computed(() => AppState.previousPage),
+            async setActiveItem(item) {
+                try {
+                    await itemsService.findItems(item.name);
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            },
+            async nextPage() {
+                try {
+                    this.pageCount++;
+                    await itemsService.nextPage();
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            },
+            async previousPage() {
+                try {
+                    this.pageCount--;
+                    await itemsService.previousPage();
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            }
+        };
+    },
+    components: { FoundItemCard }
 }
 </script>
 
