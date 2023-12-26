@@ -33,5 +33,21 @@ async saveAbility(ability){
   const res = await api.post('api/abilities', ability)
   logger.log(res.data)
 }
+async nextPage(){
+  const nextPG = AppState.nextPage
+  const res = await blankApi.get(`${nextPG}`)
+  logger.log(res.data)
+  AppState.nextPage = res.data.next
+  AppState.allAbilities = res.data.results
+  AppState.previousPage = res.data.previous
+}
+async previousPage(){
+  const previousPG = AppState.previousPage
+  const res = await blankApi.get(`${previousPG}`)
+  logger.log(res.data)
+  AppState.nextPage = res.data.next
+  AppState.allAbilities = res.data.results
+  AppState.previousPage = res.data.previous
+}
 }
 export const abilitiesService = new AbilitiesService()

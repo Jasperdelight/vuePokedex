@@ -9,6 +9,7 @@ export const AppState = reactive({
   nextPage: null,
   previousPage: null,
   allPokemon: [],
+
   /** @type {import('./models/Pokemon.js').Pokemon | null} */
   activePokemon: null,
   /** @type {import('./models/Pokemon.js').Pokemon[]} */
@@ -23,6 +24,8 @@ export const AppState = reactive({
   foundAbility: null,
   foundItem: null,
   /** @type {import('./models/Ability.js').Ability[]} */
+  allAbilities: [],
+  /** @type {import('./models/Ability.js').Item[]} */
   allItems: [],
   /** @type {import('./models/Ability.js').Ability[]} */
   myAbilities: []
