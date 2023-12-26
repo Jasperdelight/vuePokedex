@@ -36,7 +36,7 @@
   </section>
 </div>
 </template>
-
+<!-- TODO clear Appstate data on page change -->
 <script>
 import { computed, onMounted } from "vue";
 import Pop from "../utils/Pop";

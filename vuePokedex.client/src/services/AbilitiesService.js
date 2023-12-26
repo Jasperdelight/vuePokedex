@@ -9,11 +9,15 @@ class AbilitiesService{
 async getAbilityDetails(ability){
   const res = await blankApi.get(`${ability}`)
   AppState.activeAbility = new Ability(res.data)
-  // logger.log(AppState.activeAbility)
+  logger.log(AppState.activeAbility)
+
 }
 async getAbilities(){
   const res = await pokemonApi.get('/ability')
   logger.log(res.data)
+  AppState.nextPage = res.data.next
+  AppState.previousPage = res.data.previous
+  AppState.allAbilities = res.data.results.map(a => new Ability(a))
 }
 async getMyAbilities(){
   const res = await api.get('api/abilities')
