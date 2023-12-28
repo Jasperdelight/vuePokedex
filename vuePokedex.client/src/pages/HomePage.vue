@@ -73,6 +73,9 @@ export default {
             foundMove: computed(() => AppState.foundMove),
             foundAbility: computed(() => AppState.foundAbility),
             foundItem: computed(() => AppState.foundItem),
+            clearAppstate() {
+              pokemonService.clearAppstate()
+            },
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);

@@ -25,6 +25,14 @@ class PokemonService {
     logger.log('pokemon in appstate', AppState.activePokemon)
     AppState.foundMove = null
   }
+  clearAppstate(){
+    AppState.activeAbility = null
+    AppState.activePokemon = null
+    AppState.activeMove = null
+    AppState.activeItem = null
+    AppState.foundAbility = null
+    
+  }
 
   async catchPokemon(poke){
     const res = await api.post('api/pokemon', poke)
