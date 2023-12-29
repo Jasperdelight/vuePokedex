@@ -58,9 +58,12 @@ export default {
                 logger.log(error);
             }
         }
+        function clearAppstate(){
+          pokemonService.clearAppstate()
+        }
         onMounted(() => {
             getPokemon();
-            AppState.activePokemon = null
+            clearAppstate()
             // getMyPokemon()
         });
         return {
