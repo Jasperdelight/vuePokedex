@@ -18,6 +18,9 @@
           <router-link :to="{ name: 'Ability' }"   class="btn text-danger selectable text-uppercase">
             Abilities
           </router-link>
+          <router-link :to="{ name: 'Move' }"   class="btn text-danger selectable text-uppercase">
+            Moves
+          </router-link>
           <router-link :to="{ name: 'Pokemon' }" v-if="account.id" class="btn text-danger selectable text-uppercase">
             My Pokemon
           </router-link>

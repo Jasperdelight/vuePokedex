@@ -37,6 +37,11 @@ const routes = [
     name: 'Ability',
     component: loadPage('AbilityPage')
   },
+  {
+    path: '/move',
+    name: 'Move',
+    component: loadPage('MovePage')
+  },
 ]
 
 export const router = createRouter({
