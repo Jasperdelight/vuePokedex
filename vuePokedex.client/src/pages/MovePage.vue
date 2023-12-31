@@ -6,9 +6,9 @@
           <div class="col-md-5 col-12"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
         <div class="col-md-2 col-12 d-flex align-items-center" title="Page Number">{{ pageCount }}</div>
         <div class="col-md-5 col-12"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
-          <!-- <p style="text-transform: capitalize;" v-for="item in allItems" :key="item.name" @click="setActiveMove(item)" class="selectable col-12" >
-            {{ item.name }}
-          </p> -->
+          <p style="text-transform: capitalize;" v-for="move in allMoves" :key="move.name" @click="setActiveMove(move)" class="selectable col-12" >
+            {{ move.name }}
+          </p>
         </section>
       </div>
       <section class="col-10">
@@ -42,27 +42,29 @@ export default {
       getMoves();
     })
     return {
+      allMoves: computed(() => AppState.allMoves),
+      activeMove: computed(() => AppState.activeMove),
       pageCount: (0),
-            previousPG: computed(() => AppState.previousPage),
-
-            async nextPage() {
-                try {
-                    this.pageCount++;
-                    await movesService.nextPage();
-                }
-                catch (error) {
-                    Pop.error(error.message);
-                }
-            },
-            async previousPage() {
-                try {
-                    this.pageCount--;
-                    await movesService.previousPage();
-                }
-                catch (error) {
-                    Pop.error(error.message);
-                }
-            }
+              previousPG: computed(() => AppState.previousPage),
+// TODO add setActiveMode function
+              async nextPage() {
+                  try {
+                      this.pageCount++;
+                      await movesService.nextPage();
+                  }
+                  catch (error) {
+                      Pop.error(error.message);
+                  }
+              },
+              async previousPage() {
+                  try {
+                      this.pageCount--;
+                      await movesService.previousPage();
+                  }
+                  catch (error) {
+                      Pop.error(error.message);
+                  }
+              }
     }
   }
 }
