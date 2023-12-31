@@ -20,6 +20,8 @@ export const AppState = reactive({
   activeMove: null,
   /** @type {import('./models/Move.js').Move | null} */
   foundMove: null,
+  /** @type {import('./models/Move.js').Move[]} */
+  allMoves: [],
   /** @type {import('./models/Ability.js').Ability | null} */
   foundAbility: null,
   foundItem: null,
