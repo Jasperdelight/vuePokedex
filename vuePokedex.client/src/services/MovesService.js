@@ -16,6 +16,7 @@ class MovesService{
     AppState.foundMove = new Move(res.data)
     logger.log(AppState.foundMove)
     AppState.activePokemon = null
+    AppState.activeMove = new Move(res.data)
   }
   async setActiveMove(move){
     const res = await blankApi.get(`${move}`)

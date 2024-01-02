@@ -13,9 +13,9 @@
       </div>
       <section class="col-10">
         <div class="col-12 text-center">
-          <!-- <div v-if="foundItem">
-            <FoundItemCard/>
-          </div> -->
+          <div v-if="activeMove">
+            <FoundMoveCard/>
+          </div>
         </div>
       </section>
       </section>
@@ -28,45 +28,55 @@ import { computed, watchEffect } from "vue";
 import { AppState } from "../AppState";
 import Pop from "../utils/Pop";
 import { movesService } from "../services/MovesService";
+import FoundMoveCard from "../components/FoundMoveCard.vue";
 
 export default {
-  setup(){
-    async function getMoves(){
-      try{
-          await movesService.getMoves()
-      } catch(error) {
-          Pop.error(error.message);
-      }
-    }
-    watchEffect(() => {
-      getMoves();
-    })
-    return {
-      allMoves: computed(() => AppState.allMoves),
-      activeMove: computed(() => AppState.activeMove),
-      pageCount: (0),
-              previousPG: computed(() => AppState.previousPage),
-// TODO add setActiveMode function
-              async nextPage() {
-                  try {
-                      this.pageCount++;
-                      await movesService.nextPage();
-                  }
-                  catch (error) {
-                      Pop.error(error.message);
-                  }
-              },
-              async previousPage() {
-                  try {
-                      this.pageCount--;
-                      await movesService.previousPage();
-                  }
-                  catch (error) {
-                      Pop.error(error.message);
-                  }
-              }
-    }
-  }
+    setup() {
+        async function getMoves() {
+            try {
+                await movesService.getMoves();
+            }
+            catch (error) {
+                Pop.error(error.message);
+            }
+        }
+        watchEffect(() => {
+            getMoves();
+        });
+        return {
+            allMoves: computed(() => AppState.allMoves),
+            activeMove: computed(() => AppState.activeMove),
+            pageCount: (0),
+            previousPG: computed(() => AppState.previousPage),
+            async setActiveMove(move) {
+                try {
+                    movesService.getMoveDetails(move.name);
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            },
+            async nextPage() {
+                try {
+                    this.pageCount++;
+                    await movesService.nextPage();
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            },
+            async previousPage() {
+                try {
+                    this.pageCount--;
+                    await movesService.previousPage();
+                }
+                catch (error) {
+                    Pop.error(error.message);
+                }
+            }
+        };
+    },
+    components: { FoundMoveCard }
 }
 </script>
 
