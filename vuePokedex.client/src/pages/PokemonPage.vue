@@ -4,9 +4,13 @@
       <div class="col-md-2 col-4 bg-danger text-white text-shadow">
         <section class="row">
           <div class="col-12 my-4"> </div>
+          <!-- Pokemon -->
           <p style="text-transform: capitalize;" v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
             {{ pokemon.name }}
           </p>
+          <!-- Abilities -->
+          <!-- TODO add @click for abilities to render to page
+          Remove ability for multiples of same ability on backend -->
           <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" >
             {{ ability.name }}
           </p>
