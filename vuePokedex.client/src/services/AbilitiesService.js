@@ -39,6 +39,7 @@ async findAbility(name){
 }
 async saveAbility(ability){
   const res = await api.post('api/abilities', ability)
+  AppState.myAbilities.push(a => new Ability(a))
   logger.log(res.data)
 }
 async nextPage(){

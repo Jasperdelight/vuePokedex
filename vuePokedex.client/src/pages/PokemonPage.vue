@@ -7,6 +7,9 @@
           <p style="text-transform: capitalize;" v-for="pokemon in caughtPokemon" :key="pokemon.name" @click="setActivePokemon(pokemon)" class="selectable col-12" >
             {{ pokemon.name }}
           </p>
+          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" >
+            {{ ability.name }}
+          </p>
         </section>
       </div>
       
@@ -31,6 +34,7 @@
 <script>
 import { computed, onMounted, watchEffect } from "vue";
 import { pokemonService } from "../services/PokemonService";
+import { abilitiesService } from "../services/AbilitiesService";
 import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
@@ -47,6 +51,13 @@ export default {
                 Pop.error(error.message);
             }
         }
+        async function getMyAbilities(){
+          try{
+              await abilitiesService.getMyAbilities()
+          } catch(error) {
+              Pop.error(error.message);
+          }
+        }
         onMounted(() => {
             // getPokemon()
             // getMyPokemon();
@@ -54,11 +65,13 @@ export default {
         });
         watchEffect(()=> {
             getMyPokemon();
+            getMyAbilities();
         })
         return {
             caughtPokemon: computed(() => AppState.caughtPokemon),
             activePokemon: computed(() => AppState.activePokemon),
             foundMove: computed(() => AppState.foundMove),
+            myAbilities: computed(() => AppState.myAbilities),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);
