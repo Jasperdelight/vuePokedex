@@ -10,8 +10,7 @@
           </p>
           <!-- Abilities -->
           <p class="text-dark">Abilities</p>
-          <!-- TODO add @click for abilities to render to page
-          Remove ability for multiples of same ability on backend -->
+          <!-- TODO Remove ability for multiples of same ability on backend -->
           <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="setActiveAbility(ability)" >
             {{ ability.name }}
           </p>
@@ -30,6 +29,7 @@
         <div v-if="activePokemon">
           <ActivePokemonCard :activePokemon = "activePokemon"/>
         </div>
+        <!-- TODO render abilities with pokemon -->
         <div v-if="foundAbility">
           <FoundAbilityCard/>
         </div>
