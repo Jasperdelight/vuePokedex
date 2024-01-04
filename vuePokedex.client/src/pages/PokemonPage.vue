@@ -9,9 +9,10 @@
             {{ pokemon.name }}
           </p>
           <!-- Abilities -->
+          <p class="text-dark">Abilities</p>
           <!-- TODO add @click for abilities to render to page
           Remove ability for multiples of same ability on backend -->
-          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" >
+          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="setActiveAbility(ability)" >
             {{ ability.name }}
           </p>
         </section>
@@ -26,8 +27,11 @@
         <div class="col-12 d-flex justify-content-center">
           <button  class="btn btn-danger" @click="removePokemon(activePokemon.id)"> Remove </button>
         </div>
-        <div>
+        <div v-if="activePokemon">
           <ActivePokemonCard :activePokemon = "activePokemon"/>
+        </div>
+        <div v-if="foundAbility">
+          <FoundAbilityCard/>
         </div>
       </div>
     </section>
@@ -43,6 +47,7 @@ import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 import ActivePokemonCard from "../components/ActivePokemonCard.vue";
+import FoundAbilityCard from "../components/FoundAbilityCard.vue";
 
 export default {
     setup() {
@@ -76,6 +81,7 @@ export default {
             activePokemon: computed(() => AppState.activePokemon),
             foundMove: computed(() => AppState.foundMove),
             myAbilities: computed(() => AppState.myAbilities),
+            foundAbility: computed(() => AppState.foundAbility),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);
@@ -94,6 +100,13 @@ export default {
                     Pop.error(error.message);
                 }
             },
+            setActiveAbility(ability){
+              try{
+                  abilitiesService.findAbility(ability.name)
+              } catch(error) {
+                  Pop.error(error.message);
+              }
+            },
             async removePokemon(pokeId){
               try{
 
@@ -110,7 +123,7 @@ export default {
             }
         };
     },
-    components: { ActivePokemonCard }
+    components: { ActivePokemonCard, FoundAbilityCard }
 }
 </script>
 
