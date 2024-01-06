@@ -6,7 +6,7 @@
           <div class="col-md-5 col-12"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
         <div class="col-md-2 col-12 d-flex align-items-center" title="Page Number">{{ pageCount }}</div>
         <div class="col-md-5 col-12"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
-          <p style="text-transform: capitalize;" v-for="item in allItems" :key="item.name" @click="setActiveItem(item)" class="selectable col-12" >
+          <p style="text-transform: capitalize;" v-for="item in allItems" :key="item.name" @click="findItems(item)" class="selectable col-12" >
             {{ item.name }}
           </p>
         </section>
@@ -49,7 +49,7 @@ export default {
             foundItem: computed(() => AppState.foundItem),
             pageCount: (0),
             previousPG: computed(() => AppState.previousPage),
-            async setActiveItem(item) {
+            async findItems(item) {
                 try {
                     await itemsService.findItems(item.name);
                 }

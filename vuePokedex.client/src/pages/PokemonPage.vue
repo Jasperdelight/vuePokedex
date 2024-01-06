@@ -11,7 +11,7 @@
           <!-- Abilities -->
           <p class="text-dark">Abilities</p>
           <!-- TODO Remove ability for multiples of same ability on backend -->
-          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="setActiveAbility(ability)" >
+          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="findAbility(ability)" >
             {{ ability.name }}
           </p>
         </section>
@@ -99,7 +99,7 @@ export default {
                     Pop.error(error.message);
                 }
             },
-            setActiveAbility(ability){
+            findAbility(ability){
               try{
                   abilitiesService.findAbility(ability.name)
               } catch(error) {

@@ -6,7 +6,7 @@
           <div class="col-md-5 col-12"><button v-if="previousPG != null" @click="previousPage()" class="btn btn-secondary text-black"> Prev</button></div>
         <div class="col-md-2 col-12 d-flex align-items-center" title="Page Number">{{ pageCount }}</div>
         <div class="col-md-5 col-12"><button @click="nextPage()" class="btn btn-secondary text-black">Next</button></div>
-          <p style="text-transform: capitalize;" v-for="move in allMoves" :key="move.name" @click="setActiveMove(move)" class="selectable col-12" >
+          <p style="text-transform: capitalize;" v-for="move in allMoves" :key="move.name" @click="getMoveDetails(move)" class="selectable col-12" >
             {{ move.name }}
           </p>
         </section>
@@ -48,7 +48,7 @@ export default {
             activeMove: computed(() => AppState.activeMove),
             pageCount: (0),
             previousPG: computed(() => AppState.previousPage),
-            async setActiveMove(move) {
+            async getMoveDetails(move) {
                 try {
                     movesService.getMoveDetails(move.name);
                 }
