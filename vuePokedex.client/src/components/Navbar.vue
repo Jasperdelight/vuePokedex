@@ -28,6 +28,7 @@
         </li>
 
 <!-- SEARCH BAR -->
+<!-- TODO refine searchbar -->
         <form @submit.prevent="searchFunction()" action="" class="d-flex align-items-center ms-4">
 <select v-model="editableTwo" name="cars" id="cars" class="btn btn-secondary text-shadow">
   <option value="pokemon">Pokemon</option>
