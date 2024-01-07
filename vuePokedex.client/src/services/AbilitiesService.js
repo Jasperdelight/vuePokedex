@@ -37,6 +37,14 @@ async findAbility(name){
   AppState.activePokemon = null
   logger.log(res.data)
 }
+async removeAbility(abilityId){
+  const res = await api.delete(`api/ability/${abilityId}`)
+  Pop.toast(`Ability Deleted`)
+  logger.log(res.data)
+  const abilityToRemove = AppState.myAbilities.findIndex(a => a.id == abilityId)
+  AppState.myAbilities.splice(abilityToRemove, 1)
+  AppState.activeAbility = null
+}
 async saveAbility(ability){
   const res = await api.post('api/abilities', ability)
   AppState.myAbilities.push(a => new Ability(a))

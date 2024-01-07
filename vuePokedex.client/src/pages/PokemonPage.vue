@@ -10,7 +10,7 @@
           </p>
           <!-- Abilities -->
           <p class="text-dark">Abilities</p>
-          <!-- TODO Remove ability for multiples of same ability on backend -->
+          <!-- TODO Remove ability for multiples of same ability on backend && Change function on click of found ability to call own backend instead of poke api -->
           <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="findAbility(ability)" >
             {{ ability.name }}
           </p>
@@ -31,6 +31,9 @@
         </div>
       </div>
       <div v-if="foundAbility" class="col-md-10 col-8">
+        <div class="col-12 d-flex justify-content-center">
+          <button  class="btn btn-danger" @click="removeAbility(foundAbility)"> Remove </button>
+        </div>
         <FoundAbilityCard/>
       </div>
     </section>
@@ -108,7 +111,6 @@ export default {
             },
             async removePokemon(pokeId){
               try{
-
                 const foundPoke = AppState.caughtPokemon.find(p => p.id == pokeId)
                 // logger.log(foundPoke)
                 const wantsToDelete = await Pop.confirm(`Are you sure you want to let ${foundPoke.name} free?`)
@@ -116,6 +118,17 @@ export default {
                   return
                 }
                 await pokemonService.removePokemon(foundPoke)
+              } catch(error) {
+                  Pop.error(error.message);
+              }
+            },
+            async removeAbility(foundAbility){
+              try{ 
+                const wantsToDelete = await Pop.confirm(`Are you sure you want to remove ${foundAbility.name}`)
+                  if (!wantsToDelete) {
+                    return
+                  }
+                  await abilitiesService.removeAbility(foundAbility.id)
               } catch(error) {
                   Pop.error(error.message);
               }
