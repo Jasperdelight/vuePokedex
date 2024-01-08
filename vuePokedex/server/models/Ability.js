@@ -9,6 +9,7 @@ export const AbilitySchema = new Schema(
     flavorTextEntries: [Object],
     generation: [Object],
     pokemon: [Object],
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
     pokemonId: { type: Number, ref: 'Pokemon', required: true}
   }, { timestamps: true, toJSON: { virtuals: true } })
   AbilitySchema.virtual('mainPokemon', {
