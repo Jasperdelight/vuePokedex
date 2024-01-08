@@ -11,7 +11,7 @@
           <!-- Abilities -->
           <p class="text-dark">Abilities</p>
           <!-- TODO Remove ability for multiples of same ability on backend && Change function on click of found ability to call own backend instead of poke api -->
-          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="findAbility(ability)" >
+          <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="getMyAbilityDetails(ability)" >
             {{ ability.name }}
           </p>
         </section>
@@ -102,9 +102,10 @@ export default {
                     Pop.error(error.message);
                 }
             },
-            findAbility(ability){
+            async getMyAbilityDetails(ability){
               try{
-                  abilitiesService.findAbility(ability.name)
+                logger.log(ability)
+                  abilitiesService.getMyAbilityDetails(ability._id)
               } catch(error) {
                   Pop.error(error.message);
               }

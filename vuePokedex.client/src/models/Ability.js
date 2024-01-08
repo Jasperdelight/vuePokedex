@@ -7,5 +7,6 @@ export class Ability{
     this.id = data.id
     this.name = data.name
     this.pokemon = data.pokemon
+    this._id = data._id
   }
 }
