@@ -18,7 +18,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button @click="saveAbility()" type="button" class="btn btn-primary">Save changes</button>
+        <button @click="saveAbility()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save Ability</button>
       </div>
     </div>
   </div>
@@ -51,6 +51,8 @@ export default {
           // ability.pokemonId = this.activePokemon.id
           // logger.log(ability)
             abilitiesService.saveAbility(abilityData)
+            Pop.toast('Ability Saved',)
+            
         } catch(error) {
             Pop.error(error.message);
         }

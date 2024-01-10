@@ -34,6 +34,7 @@
         <div class="col-12 d-flex justify-content-center">
           <button  class="btn btn-danger" @click="removeAbility(foundAbility)"> Remove </button>
         </div>
+        <!-- TODO change how abilities are listed and rendered to page -->
         <!-- <FoundAbilityCard/> -->
       </div>
     </section>
