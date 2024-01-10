@@ -11,9 +11,9 @@ class AbilitiesService{
     if(!removedAbility){
       throw new BadRequest('no pokemon with that ID exists')
     }
-    if (removedAbility.creatorId != userId) {
-      throw new Forbidden('That ability is not yours to delete')
-    }
+    // if (removedAbility.creatorId != userId) {
+    //   throw new Forbidden('That ability is not yours to delete')
+    // }
     await removedAbility.remove()
     return removedAbility
   }
@@ -24,7 +24,7 @@ class AbilitiesService{
   
   async saveAbility(body) {
     let ability = await dbContext.Ability.create(body)
-    await ability.populate('mainPokemon')
+    await ability.populate('mainPokemon', 'creatorId')
     return ability;
   }
 

@@ -40,7 +40,7 @@ export class AbilitiesController extends BaseController {
   }
   async removeAbility (req, res, next) {
   try{
-      const abilityId = req.params.AbilityId
+      const abilityId = req.params.abilityId
       const userId = req.userInfo._id
       let removedAbility = await abilitiesService.removeAbility(abilityId, userId)
   return res.send(removedAbility)

@@ -15,6 +15,10 @@ async getAbilityDetails(ability){
 async getMyAbilityDetails(abilityId){
   const res = await api.get(`api/abilities/${abilityId}`)
   logger.log(res.data)
+  AppState.foundAbility = new Ability(res.data)
+  AppState.activePokemon = null
+  AppState.foundItem = null
+  AppState.foundMove = null
 }
 async getAbilities(){
   const res = await pokemonApi.get('/ability')
@@ -44,10 +48,10 @@ async findAbility(name){
   logger.log(res.data)
 }
 async removeAbility(abilityId){
-  const res = await api.delete(`api/ability/${abilityId}`)
+  const res = await api.delete(`api/abilities/${abilityId}`)
   Pop.toast(`Ability Deleted`)
   logger.log(res.data)
-  const abilityToRemove = AppState.myAbilities.findIndex(a => a.id == abilityId)
+  const abilityToRemove = AppState.myAbilities.findIndex(a => a._id == abilityId)
   AppState.myAbilities.splice(abilityToRemove, 1)
   AppState.activeAbility = null
 }

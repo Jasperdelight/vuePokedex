@@ -32,6 +32,7 @@ class PokemonService {
     AppState.activeItem = null
     AppState.foundAbility = null
     AppState.foundMove = null
+    AppState.foundItem = null
     
   }
 

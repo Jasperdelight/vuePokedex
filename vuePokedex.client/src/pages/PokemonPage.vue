@@ -34,7 +34,7 @@
         <div class="col-12 d-flex justify-content-center">
           <button  class="btn btn-danger" @click="removeAbility(foundAbility)"> Remove </button>
         </div>
-        <FoundAbilityCard/>
+        <!-- <FoundAbilityCard/> -->
       </div>
     </section>
   </div>
@@ -129,14 +129,14 @@ export default {
                   if (!wantsToDelete) {
                     return
                   }
-                  await abilitiesService.removeAbility(foundAbility.id)
+                  await abilitiesService.removeAbility(foundAbility._id)
               } catch(error) {
                   Pop.error(error.message);
               }
             }
         };
     },
-    components: { ActivePokemonCard, FoundAbilityCard }
+    components: { ActivePokemonCard}
 }
 </script>
 
