@@ -19,6 +19,7 @@ async getMyAbilityDetails(abilityId){
   AppState.activePokemon = null
   AppState.foundItem = null
   AppState.foundMove = null
+  logger.log(AppState.foundAbility, 'found ability in appstate')
 }
 async getAbilities(){
   const res = await pokemonApi.get('/ability')

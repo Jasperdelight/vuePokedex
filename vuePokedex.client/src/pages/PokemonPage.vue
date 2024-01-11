@@ -10,7 +10,7 @@
           </p>
           <!-- Abilities -->
           <p class="text-dark">Abilities</p>
-          <!-- TODO Remove ability for multiples of same ability on backend && Change function on click of found ability to call own backend instead of poke api -->
+          <!-- TODO Remove ability for multiples of same ability on backend -->
           <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="getMyAbilityDetails(ability)" >
             {{ ability.name }}
           </p>
@@ -35,7 +35,7 @@
           <button  class="btn btn-danger" @click="removeAbility(foundAbility)"> Remove </button>
         </div>
         <!-- TODO change how abilities are listed and rendered to page -->
-        <!-- <FoundAbilityCard/> -->
+        <SavedAbilityCard/>
       </div>
     </section>
   </div>
@@ -51,6 +51,7 @@ import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 import ActivePokemonCard from "../components/ActivePokemonCard.vue";
 import FoundAbilityCard from "../components/FoundAbilityCard.vue";
+import SavedAbilityCard from "../components/SavedAbilityCard.vue";
 
 export default {
     setup() {
@@ -137,7 +138,7 @@ export default {
             }
         };
     },
-    components: { ActivePokemonCard}
+    components: { ActivePokemonCard, SavedAbilityCard }
 }
 </script>
 
