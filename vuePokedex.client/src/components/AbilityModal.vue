@@ -40,6 +40,7 @@ export default {
       activeAbility: computed(()=> AppState.activeAbility),
       activeMove: computed(()=> AppState.activeMove),
       activePokemon: computed(() => AppState.activePokemon),
+      myAbilities: computed(() => AppState.myAbilities),
       async saveAbility(){
         try{
           // logger.log(this.activeAbility)
@@ -47,6 +48,11 @@ export default {
           let abilityData = {}
           abilityData = this.activeAbility
           abilityData.pokemonId = pokemonId
+          if (this.myAbilities.find(a => a.name == abilityData.name)) {
+            Pop.toast('Already saved this ability!')
+            logger.log('ability already saved')
+            return
+          }
           // let ability = this.activeAbility
           // ability.pokemonId = this.activePokemon.id
           // logger.log(ability)
