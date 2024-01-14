@@ -8,19 +8,29 @@
     <div class="col-6 text-center">Category: {{ foundItem.category.name }}</div>
     <div class="col-12 text-center">{{ foundItem.flavorTextEntries[0].text }}</div>
     <div class="col-12 text-center">{{ foundItem.effectEntries[0].effect }}</div>
+    <div class="col-4">
+      
+      <select v-model="editable" name="pokes" id="pokes" class="btn btn-secondary text-shadow">
+  <option v-for="pokemon in caughtPokemon" :key="pokemon.name" value="poke">Pokemon</option>
+
+</select>
+    </div>
   </section>
 </template>
 
 
 <script>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { AppState } from "../AppState";
 
 export default {
   setup(){
+    const editable = ref('')
     return {
-      foundItem: computed(() => AppState.foundItem)
-    }
+      foundItem: computed(() => AppState.foundItem),
+      caughtPokemon: computed(() => AppState.caughtPokemon),
+      editable
+  }
   }
 }
 </script>
