@@ -11,6 +11,7 @@
     <div class="col-4">
       
       <button class="btn btn-secondary" @click="saveItem(pokemon)" v-for="pokemon in caughtPokemon" :key="pokemon.name">Give to {{ pokemon.name }}</button>
+      <!-- TODO add backend to support saving items -->
     </div>
   </section>
 </template>
