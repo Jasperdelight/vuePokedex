@@ -10,10 +10,7 @@
     <div class="col-12 text-center">{{ foundItem.effectEntries[0].effect }}</div>
     <div class="col-4">
       
-      <select v-model="editable" name="pokes" id="pokes" class="btn btn-secondary text-shadow">
-  <option v-for="pokemon in caughtPokemon" :key="pokemon.name" value="poke">Pokemon</option>
-
-</select>
+      <button class="btn btn-secondary" @click="saveItem(pokemon)" v-for="pokemon in caughtPokemon" :key="pokemon.name">Give to {{ pokemon.name }}</button>
     </div>
   </section>
 </template>
@@ -22,6 +19,7 @@
 <script>
 import { computed, ref } from "vue";
 import { AppState } from "../AppState";
+import { logger } from "../utils/Logger";
 
 export default {
   setup(){
@@ -29,7 +27,10 @@ export default {
     return {
       foundItem: computed(() => AppState.foundItem),
       caughtPokemon: computed(() => AppState.caughtPokemon),
-      editable
+      editable,
+      async saveItem(pokemon){
+        logger.log(pokemon.name)
+      }
   }
   }
 }
