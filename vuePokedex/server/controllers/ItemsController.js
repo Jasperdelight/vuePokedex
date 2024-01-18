@@ -12,18 +12,18 @@ export class ItemsController extends BaseController{
   }
   async getMyItems (req, res, next) {
   try{
-      const items = await itemsService.getMyItems()
+    const items = await itemsService.getMyItems()
   return res.send(items)
   } catch(error) {
-      next(error);
+    next(error);
   }
   }
   async saveItem (req, res, next) {
   try{
-      const item = itemsService.saveItem(req.body)
+    const item = itemsService.saveItem(req.body)
   return res.send(item)
   } catch(error) {
-      next(error);
+    next(error);
   }
   }
 }

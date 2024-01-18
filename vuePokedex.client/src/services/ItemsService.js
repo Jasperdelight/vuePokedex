@@ -2,7 +2,7 @@ import { AppState } from "../AppState"
 import { Item } from "../models/Item"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
-import { blankApi, pokemonApi } from "./AxiosService"
+import { api, blankApi, pokemonApi } from "./AxiosService"
 
 class ItemsService{
   async findItems(name){
@@ -40,6 +40,10 @@ class ItemsService{
     AppState.nextPage = res.data.next
     AppState.allItems = res.data.results
     AppState.previousPage = res.data.previous
+  }
+  async saveItem( foundItem){
+    const res = await api.post(`api/items`, foundItem)
+    logger.log(res.data)
   }
 }
 export const itemsService = new ItemsService()

@@ -10,7 +10,7 @@
     <div class="col-12 text-center">{{ foundItem.effectEntries[0].effect }}</div>
     <div class="col-4">
       
-      <button class="btn btn-secondary" @click="saveItem(pokemon)" v-for="pokemon in caughtPokemon" :key="pokemon.name">Give to {{ pokemon.name }}</button>
+      <button class="btn btn-secondary" @click="saveItem(foundItem)" v-for="pokemon in caughtPokemon" :key="pokemon.name">Give to {{ pokemon.name }}</button>
       <!-- TODO add backend to support saving items -->
     </div>
   </section>
@@ -21,6 +21,8 @@
 import { computed, ref } from "vue";
 import { AppState } from "../AppState";
 import { logger } from "../utils/Logger";
+import Pop from "../utils/Pop";
+import { itemsService } from "../services/ItemsService";
 
 export default {
   setup(){
@@ -29,8 +31,13 @@ export default {
       foundItem: computed(() => AppState.foundItem),
       caughtPokemon: computed(() => AppState.caughtPokemon),
       editable,
-      async saveItem(pokemon){
-        logger.log(pokemon.name)
+      async saveItem(foundItem){
+        try{
+          logger.log(foundItem)
+            await itemsService.saveItem(foundItem)
+        } catch(error) {
+            Pop.error(error.message);
+        }
       }
   }
   }
