@@ -20,6 +20,7 @@ export class ItemsController extends BaseController{
   }
   async saveItem (req, res, next) {
   try{
+    req.body.creatorId = req.userInfo.id
     const item = itemsService.saveItem(req.body)
   return res.send(item)
   } catch(error) {

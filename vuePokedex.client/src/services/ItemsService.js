@@ -43,7 +43,7 @@ class ItemsService{
   }
   async saveItem( foundItem){
     const res = await api.post(`api/items`, foundItem)
-    logger.log(res.data)
+    logger.log(res.data, 'res.data from api for item')
   }
 }
 export const itemsService = new ItemsService()
