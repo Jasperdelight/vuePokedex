@@ -1,8 +1,9 @@
 <template>
   <section class="row">
     <div class="col-12 fs-3 text-center" style="text-transform: capitalize;"> {{ foundAbility?.name }}</div>
-    <div class="col-12 text-center">{{ foundAbility.generation[0]?.name }}</div>
+    <div class="col-12 text-center" style="text-transform: capitalize;" >{{ foundAbility.generation[0]?.name }}</div>
     <div class="col-12 text-center">{{ foundAbility.effectEntries[0]?.effect }}</div>
+    <div class="col-12 text-center fs-5">{{ foundAbility.flavorTextEntries[0]?.flavor_text }}</div>
     <div class="col-12 fs-3 text-center" style="text-transform: capitalize;"> {{ foundAbility.mainPokemon?.name }}</div>
     <section class="col-12 d-flex justify-content-center">
       <img :src="foundAbility.mainPokemon?.img" alt="" class="img-fluid">
