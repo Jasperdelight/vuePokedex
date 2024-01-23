@@ -25,6 +25,10 @@ class ItemsService{
     AppState.allItems = res.data.results.map(i => new Item(i))
     logger.log('items in appstate', AppState.allItems)
   }
+  async getMyItems(){
+    const res = await api.get('api/items')
+    logger.log(res.data, 'items')
+  }
   async nextPage(){
     const nextPG = AppState.nextPage
     const res = await blankApi.get(`${nextPG}`)

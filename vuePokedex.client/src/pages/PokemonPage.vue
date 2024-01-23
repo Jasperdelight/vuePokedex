@@ -51,6 +51,7 @@ import { AppState } from "../AppState";
 import ActivePokemonCard from "../components/ActivePokemonCard.vue";
 import FoundAbilityCard from "../components/FoundAbilityCard.vue";
 import SavedAbilityCard from "../components/SavedAbilityCard.vue";
+import { itemsService } from "../services/ItemsService";
 
 export default {
     setup() {
@@ -70,6 +71,13 @@ export default {
               Pop.error(error.message);
           }
         }
+        async function getMyItems(){
+          try{
+              await itemsService.getMyItems()
+          } catch(error) {
+              Pop.error(error.message);
+          }
+        }
         onMounted(() => {
             // getPokemon()
             // getMyPokemon();
@@ -78,6 +86,7 @@ export default {
         watchEffect(()=> {
             getMyPokemon();
             getMyAbilities();
+            getMyItems();
         })
         return {
             caughtPokemon: computed(() => AppState.caughtPokemon),
