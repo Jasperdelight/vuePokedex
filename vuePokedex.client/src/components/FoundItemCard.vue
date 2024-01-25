@@ -33,7 +33,7 @@ export default {
       editable,
       async saveItem(foundItem){
         try{
-          logger.log(foundItem)
+          logger.log(foundItem, 'item being saved and sent from ItemCard')
             await itemsService.saveItem(foundItem)
         } catch(error) {
             Pop.error(error.message);
