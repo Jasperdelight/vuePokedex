@@ -10,7 +10,7 @@
     <div class="col-12 text-center">{{ foundItem.effectEntries[0].effect }}</div>
     <div class="col-4">
       
-      <button class="btn btn-secondary" @click="saveItem(foundItem)" v-for="pokemon in caughtPokemon" :key="pokemon.name">Give to {{ pokemon.name }}</button>
+      <button class="btn btn-secondary" @click="saveItem(foundItem, pokemon._id)" v-for="pokemon in caughtPokemon" :key="pokemon.name">Give to {{ pokemon.name }}</button>
       <!-- TODO add backend to support saving items -->
     </div>
   </section>
@@ -31,9 +31,11 @@ export default {
       foundItem: computed(() => AppState.foundItem),
       caughtPokemon: computed(() => AppState.caughtPokemon),
       editable,
-      async saveItem(foundItem){
+      async saveItem(foundItem, pokemonId){
         try{
-          logger.log(foundItem, 'item being saved and sent from ItemCard')
+          logger.log(foundItem, pokemonId, 'item being saved and sent from ItemCard')
+          foundItem.pokemonId = pokemonId
+          logger.log(foundItem)
             await itemsService.saveItem(foundItem)
         } catch(error) {
             Pop.error(error.message);
