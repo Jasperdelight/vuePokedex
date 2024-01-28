@@ -13,6 +13,11 @@
           <p style="text-transform: capitalize;" v-for="ability in myAbilities" :key="ability.name" class="selectable col-12" @click="getMyAbilityDetails(ability)" >
             {{ ability.name }}
           </p>
+          <!-- Items -->
+          <p class="text-dark">Items</p>
+          <p style="text-transform: capitalize;" v-for="item in myItems" :key="item.name" class="selectable col-12" @click="getMyAbilityDetails(item)" >
+            {{ item.name }}
+          </p>
         </section>
       </div>
       
@@ -94,6 +99,7 @@ export default {
             foundMove: computed(() => AppState.foundMove),
             myAbilities: computed(() => AppState.myAbilities),
             foundAbility: computed(() => AppState.foundAbility),
+            myItems: computed(() => AppState.myItems),
             async getPokemonDetails(name) {
                 try {
                     await pokemonService.getPokemonDetails(name);

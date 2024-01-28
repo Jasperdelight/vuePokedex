@@ -29,6 +29,7 @@ export const AppState = reactive({
   allAbilities: [],
   /** @type {import('./models/Ability.js').Item[]} */
   allItems: [],
+  myItems: [],
   /** @type {import('./models/Ability.js').Ability[]} */
   myAbilities: []
 })
