@@ -42,6 +42,11 @@ const routes = [
     name: 'Move',
     component: loadPage('MovePage')
   },
+  {
+    path: '/guide',
+    name: 'Guide',
+    component: loadPage('GuidePage')
+  },
 ]
 
 export const router = createRouter({
