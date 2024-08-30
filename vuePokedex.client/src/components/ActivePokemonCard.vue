@@ -22,7 +22,11 @@
     <section class="col-4" v-for="s in activePokemon.stats" :key="s.stats">
       <span class="fw-bold" style="text-transform: capitalize;">{{ s?.stat?.name }}:</span> {{ s?.base_stat }}
     </section>
-
+    <div class="col-12 fs-3"> ABILITY
+      <div class="" v-for="a in activePokemon.abilities" :key="a.abilities"> 
+        <div class="" @click="getAbilityDetails(a.ability.name)">{{ a?.ability.name }}</div>
+      </div>
+    </div>
     <div class="col-3 fs-3 mt-4">Abilities</div>
     <section  class="col-3 mt-4">
       <form @submit.prevent="getAbilityDetails()" class="d-flex">
@@ -112,7 +116,7 @@ export default {
           editableTwo,
             async getAbilityDetails() {
                 try {
-                    // logger.log(editable.value)
+                    logger.log(editable.value)
                     await abilitiesService.getAbilityDetails(editable.value);
                 }
                 catch (error) {
